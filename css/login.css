@@ -1,0 +1,192 @@
+/* ---- 1. SETUP E NOVA PALETA DE CORES "OCEANO PROFUNDO" ---- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
+
+:root {
+    --royal-blue: #2E14ED;
+    --crimson-red: #ED1435;
+    --dark-text: #212529;
+    --light-text: #6c757d;
+    --white: #ffffff;
+    --border-color: rgba(255, 255, 255, 0.5);
+    --background-start: #e0c3fc;
+    --background-end: #8ec5fc;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
+    color: var(--light-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ---- 2. LAYOUT PRINCIPAL COM IMAGEM ---- */
+.cadastro-container {
+    display: flex;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+}
+
+.mascote-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.mascote-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.form-lado-a-lado {
+    flex: 1;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-container {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.logo { width: 48px; height: 48px; }
+
+.form-wrapper {
+    width: 100%;
+}
+
+/* ---- 3. ESTILOS DE TEXTO E BOTÕES COM A NOVA PALETA ---- */
+.step-title { font-size: 24px; font-weight: 700; margin-bottom: 20px; line-height: 1.4; text-align: center; color: var(--dark-text); }
+.step-subtitle { font-size: 16px; color: var(--dark-text); margin-bottom: 30px; text-align: center; }
+
+.btn {
+    padding: 14px 28px; border-radius: 12px; font-size: 16px; font-weight: 500;
+    text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: all 0.3s ease;
+    text-align: center;
+}
+.btn-primary { background-color: var(--primary-accent); color: var(--dark-text-contrast); box-shadow: 0 4px 15px rgba(8, 217, 214, 0.2); }
+.btn-primary:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(8, 217, 214, 0.3); }
+.btn-primary:disabled { background-color: #555; color: #aaa; box-shadow: none; transform: none; cursor: not-allowed; }
+.btn-full { width: 100%; }
+
+/* ---- 4. CAMPOS DE FORMULÁRIO COM A NOVA PALETA ---- */
+.floating-label-group { position: relative; margin-bottom: 25px; }
+.floating-label-group input {
+    width: 100%; padding: 18px 16px 8px 16px; border: 1px solid transparent; border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    font-size: 16px; font-family: 'Inter', sans-serif;
+    outline: none; transition: all 0.3s ease;
+    color: var(--light-text); /* Cor do texto digitado */
+}
+.floating-label-group label {
+    position: absolute; top: 14px; left: 16px; font-size: 16px; color: var(--secondary-text);
+    pointer-events: none; transition: all 0.3s ease;
+}
+.floating-label-group input:focus {
+    border-color: var(--primary-accent); background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 3px rgba(8, 217, 214, 0.1);
+}
+.floating-label-group input:focus + label,
+.floating-label-group input:not([placeholder~=" "]) + label {
+    top: 5px; font-size: 11px; font-weight: 500; color: var(--primary-accent);
+}
+
+/* ---- 5. ELEMENTOS ESPECÍFICOS DA TELA DE LOGIN ---- */
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+.custom-checkbox label { color: var(--dark-text); }
+.custom-checkbox input[type="checkbox"] { display: none; }
+.custom-checkbox label { cursor: pointer; position: relative; padding-left: 30px; user-select: none; }
+.custom-checkbox label::before {
+    content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: 20px; height: 20px; border: 1px solid var(--dark-text);
+    border-radius: 4px; background-color: transparent; transition: all 0.2s ease;
+}
+.custom-checkbox label::after {
+    content: ''; position: absolute; left: 7px; top: 50%;
+    width: 6px; height: 12px; border: solid var(--dark-text-contrast); border-width: 0 2px 2px 0;
+    transform: translateY(-70%) rotate(45deg); opacity: 0; transition: opacity 0.2s ease;
+}
+.custom-checkbox input[type="checkbox"]:checked + label::before { background-color: var(--primary-accent); border-color: var(--primary-accent); }
+.custom-checkbox input[type="checkbox"]:checked + label::after { opacity: 1; }
+
+.forgot-password-link {
+    color: var(--dark-text);
+    text-decoration: none;
+}
+.forgot-password-link:hover {
+    color: var(--primary-accent);
+    text-decoration: underline;
+}
+
+.error-message {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: var(--error-color);
+    display: none;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 15px;
+    color: var(--secondary-text);
+}
+.register-link a {
+    color: var(--primary-accent);
+    font-weight: 500;
+    text-decoration: none;
+}
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* ---- 6. RESPONSIVIDADE ---- */
+@media (max-width: 768px) {
+    .cadastro-container {
+        flex-direction: column;
+        background: transparent;
+        backdrop-filter: none;
+        border: none;
+        box-shadow: none;
+    }
+    .mascote-container {
+        display: none; /* Em telas pequenas, focamos 100% no formulário */
+    }
+    .form-lado-a-lado {
+        padding: 0;
+    }
+    .form-wrapper {
+        background: var(--glass-background);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 24px;
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    }
+}

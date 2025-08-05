@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Facillit Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+
+    <div class="cadastro-container">
+        <div class="mascote-container">
+            <img src="/imagens/MASCOTE/LOGIN.png" alt="Mascote Facillit Hub">
+        </div>
+        <div class="form-lado-a-lado">
+            <div class="logo-container">
+                <img src="/imagens/LOGO/png/preta.svg" alt="Logo Facillit Hub" class="logo">
+            </div>
+            <div class="form-wrapper">
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
+                </div>
+
+                <form id="facilit-hub-form" novalidate>
+                    <div class="form-step" data-step="welcome">
+                        <h2 class="step-title">Olá! É a sua primeira vez por aqui?</h2>
+                        <div class="options-group">
+                            <button type="button" class="btn btn-primary" data-nav-action="go" data-target-step="profile-select">Sim</button>
+                            <a href="login.html" class="btn btn-secondary">Não, já tenho conta</a>
+                        </div>
+                    </div>
+                    
+                    <div class="form-step" data-step="profile-select">
+                        <h2 class="step-title">Vamos te conhecer melhor. Qual destas opções representa você?</h2>
+                        <div class="options-group-vertical">
+                            <button type="button" class="btn btn-primary btn-full" data-profile="student">Sou Estudante</button>
+                            <button type="button" class="btn btn-primary btn-full" data-profile="teacher">Sou Professor</button>
+                            <button type="button" class="btn btn-primary btn-full" data-profile="manager">Sou Gestor</button>
+                        </div>
+                         <div class="step-navigation">
+                            <button type="button" class="btn btn-secondary" data-nav-action="back">Voltar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-step" data-step="dynamic-question-container">
+                        </div>
+
+                    <div class="form-step" data-step="create-account">
+                        <h2 class="step-title" id="account-title">Quase lá! Vamos criar sua conta.</h2>
+                        <div class="floating-label-group">
+                            <input type="text" id="main-username" name="username" placeholder=" " required>
+                            <label for="main-username">Seu nome de usuário</label>
+                            <span class="email-suffix">@facillithub.com.br</span>
+                        </div>
+                        <div class="floating-label-group">
+                            <input type="password" id="main-password" name="password" placeholder=" " required>
+                             <label for="main-password">Crie uma senha</label>
+                        </div>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">Li e concordo com os <a href="#">termos e condições</a></label>
+                        </div>
+                         <div class="step-navigation">
+                            <button type="button" class="btn btn-secondary" data-nav-action="back">Voltar</button>
+                            <button type="button" class="btn btn-primary" data-nav-action="go" data-target-step="configure-profile">Avançar</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" data-step="configure-profile">
+                        <h2 class="step-title" id="config-title">Personalize seu perfil</h2>
+                         <div class="floating-label-group">
+                            <input type="text" id="nickname" name="nickname" placeholder=" ">
+                            <label for="nickname">Como gostaria de ser chamado(a)? (Apelido)</label>
+                        </div>
+                        <div class="custom-select-wrapper">
+                             <select id="pronoun" name="pronoun">
+                                <option value="" disabled selected>Pronome de tratamento...</option>
+                                <option value="Ele/Dele">Ele/Dele</option>
+                                <option value="Ela/Dela">Ela/Dela</option>
+                                <option value="Elu/Delu">Elu/Delu</option>
+                                <option value="Nenhum">Prefiro não usar</option>
+                             </select>
+                        </div>
+                        <p class="step-subtitle" style="margin-top: 20px;">Adicione uma foto de perfil:</p>
+                        <div class="avatar-options">
+                            <button type="button" class="avatar-choice">Enviar foto</button>
+                            <button type="button" class="avatar-choice">Criar avatar</button>
+                        </div>
+                        <div class="step-navigation">
+                            <button type="button" class="btn btn-secondary" data-nav-action="back">Voltar</button>
+                            <button type="button" class="btn btn-primary" id="finish-and-save-btn">Finalizar cadastro</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-step" data-step="final">
+                        <h2 class="step-title final-title">Conta criada com sucesso!</h2>
+                        <p class="step-subtitle" id="final-message">Seja bem-vindo(a)!</p>
+                        <a href="#" class="btn btn-primary btn-full">Ir para o painel inicial</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/js/register.js"></script>
+</body>
+</html>

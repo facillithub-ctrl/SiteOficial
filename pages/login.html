@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Facillit Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+
+    <div class="cadastro-container">
+        <div class="mascote-container">
+            <img src="/imagens/MASCOTE/LOGIN.png" alt="Mascote Facillit Hub">
+        </div>
+
+        <div class="form-lado-a-lado">
+            <div class="logo-container">
+                <img src="/imagens/LOGO/png/preta.svg" alt="Logo Facillit Hub" class="logo">
+            </div>
+
+            <div class="form-wrapper" style="padding-top: 60px;">
+                <form id="login-form" novalidate>
+                    <h2 class="step-title">Bem-vindo(a) de volta!</h2>
+                    <p class="step-subtitle">Faça login para continuar.</p>
+                    
+                    <div class="floating-label-group">
+                        <input type="email" id="login-email" name="email" placeholder=" " required>
+                        <label for="login-email">Seu e-mail ou nome de usuário</label>
+                    </div>
+
+                    <div class="floating-label-group">
+                        <input type="password" id="login-password" name="password" placeholder=" " required>
+                        <label for="login-password">Sua senha</label>
+                    </div>
+
+                    <div class="login-options">
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="remember-me" name="remember-me">
+                            <label for="remember-me">Lembrar-me</label>
+                        </div>
+                        <a href="#" class="forgot-password-link">Esqueceu sua senha?</a>
+                    </div>
+                    
+                    <p class="error-message" id="login-error-message"></p>
+
+                    <button type="submit" class="btn btn-primary btn-full" id="login-button">Entrar</button>
+
+                    <p class="register-link">
+                        Não tem uma conta? <a href="register.html">Cadastre-se</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/js/login.js"></script>
+</body>
+</html>
