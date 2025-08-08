@@ -28,11 +28,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 { id: 'address', type: 'address', title: 'Confirme seu endereço' }
             ],
             teacher: [
-                { id: 'fullName', label: 'Nome completo', type: 'text', title: 'Olá! Por favor, seu nome completo.' },
+                { id: 'fullName', label: 'Nome completo', type: 'text', title: 'Primeiro, qual é o seu nome completo?' },
+                { id: 'dob', label: 'Data de nascimento', type: 'date', title: 'Certo, [NAME]. E sua data de nascimento?' },
+                { id: 'schooling', label: 'Formação acadêmica', type: 'select', options: ['Selecione...', 'Licenciatura', 'Bacharelado', 'Pós-graduação', 'Mestrado', 'Doutorado'], title: 'Qual é a sua formação acadêmica?' },
+                { id: 'subject', label: 'Disciplina principal', type: 'select', options: ['Selecione...', 'Matemática', 'Português', 'História', 'Geografia', 'Ciências', 'Artes', 'Educação Física', 'Outra'], title: 'Qual disciplina você leciona?' },
+                { id: 'experience', label: 'Tempo de experiência', type: 'select', options: ['Selecione...', 'Menos de 1 ano', '1-3 anos', '4-6 anos', '7-10 anos', 'Mais de 10 anos'], title: 'Há quanto tempo você atua como professor?' },
+                { id: 'cep', label: 'CEP', type: 'tel', title: 'Onde você trabalha ou mora? Comece pelo CEP.' },
+                { id: 'address', type: 'address', title: 'Confirme seu endereço' }
             ],
+
             manager: [
-                { id: 'fullName', label: 'Nome completo', type: 'text', title: 'Seja bem-vindo(a). Qual seu nome completo?' },
-            ]
+                { id: 'fullName', label: 'Nome completo', type: 'text', title: 'Primeiro, qual é o seu nome completo?' },
+                { id: 'dob', label: 'Data de nascimento', type: 'date', title: 'Certo, [NAME]. E sua data de nascimento?' },
+                { id: 'education', label: 'Formação acadêmica', type: 'select', options: ['Selecione...', 'Licenciatura', 'Pedagogia', 'Administração Escolar', 'Pós-graduação', 'Mestrado', 'Doutorado'], title: 'Qual é a sua formação acadêmica?' },
+                { id: 'schoolType', label: 'Tipo de instituição', type: 'select', options: ['Selecione...', 'Escola pública', 'Escola privada', 'Instituto técnico', 'Faculdade/Universidade', 'Outro'], title: 'Que tipo de instituição você administra?' },
+                { id: 'experience', label: 'Tempo de experiência em gestão escolar', type: 'select', options: ['Selecione...', 'Menos de 1 ano', '1-3 anos', '4-6 anos', '7-10 anos', 'Mais de 10 anos'], title: 'Há quanto tempo você atua como gestor escolar?' },
+                { id: 'cep', label: 'CEP', type: 'tel', title: 'Qual o CEP da instituição?' },
+                { id: 'address', type: 'address', title: 'Confirme o endereço da instituição' }
+            ],
+
         },
         currentQuestionIndex: 0
     };

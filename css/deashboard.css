@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #e91e24; /* vermelho */
+    width: 240px;
+    min-width: 200px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease;
+    padding-top: 20px;
+}
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+.sidebar .menu-title {
+    color: white;
+    padding: 15px;
+}
+.sidebar nav a {
+    display: block;
+    color: white;
+    padding: 12px 15px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+.sidebar nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Main */
+.main {
+    flex: 1;
+    margin-left: 240px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    transition: margin-left 0.3s ease;
+}
+.main.expanded {
+    margin-left: 0;
+}
+
+/* Header */
+.header {
+    background-color: #28a745; /* verde */
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+.header-icons span {
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+/* Conteúdo */
+.content {
+    background-color: #ffeb3b; /* amarelo */
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
