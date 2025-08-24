@@ -20,7 +20,7 @@ body, html { font-family: 'Inter', sans-serif; color: var(--dark-text); overflow
 .site-header { background-color: var(--header-bg); backdrop-filter: blur(5px); padding: 15px 30px; position: fixed; z-index: 1000; width: 95%; max-width: 1400px; top: 20px; left: 50%; transform: translateX(-50%); border-radius: 50px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border: 1px solid var(--header-border); }
 .header-content { display: flex; justify-content: space-between; align-items: center; }
 .header-left, .header-right { display: flex; align-items: center; gap: 30px; }
-.logo img { height: 35px; }
+.logo img { height: 30px; }
 .menu ul { list-style: none; display: flex; gap: 25px; }
 .menu ul li a { color: var(--dark-text); text-decoration: none; font-weight: 700; font-size: 15px; transition: color 0.3s; cursor: pointer; }
 .menu ul li a:hover, .menu ul li a.active { color: var(--royal-blue); }
