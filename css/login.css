@@ -1,6 +1,6 @@
 /* ---- 1. SETUP E  PALETA DE CORES  ---- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet');
 :root {
     --royal-blue: #2E14ED;
     --crimson-red: #ED1435;
@@ -8,8 +8,8 @@
     --light-text: #6c757d;
     --white: #ffffff;
     --border-color: rgba(255, 255, 255, 0.5);
-    --background-start: #e0c3fc;
-    --background-end: #8ec5fc;
+    --background-start: #ffffff;
+    --background-end: #ffffff;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

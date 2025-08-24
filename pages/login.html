@@ -10,53 +10,40 @@
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
+    <section id="hero-background">
+        <div id="particles-js"></div>
 
-    <div class="cadastro-container">
-        <div class="mascote-container">
-            <img src="/imagens/MASCOTE/LOGIN.png" alt="Mascote Facillit Hub">
-        </div>
-
-        <div class="form-lado-a-lado">
-            <div class="logo-container">
-                <img src="/imagens/LOGO/png/preta.svg" alt="Logo Facillit Hub" class="logo">
+        <div class="cadastro-container">
+            <div class="mascote-container">
+                <img src="/imagens/MASCOTE/LOGIN.png" alt="Mascote Facillit Hub">
             </div>
-
-            <div class="form-wrapper" style="padding-top: 60px;">
-                <form id="login-form" novalidate>
-                    <h2 class="step-title">Bem-vindo(a) de volta!</h2>
-                    <p class="step-subtitle">Faça login para continuar.</p>
-                    
-                    <div class="floating-label-group">
-                        <input type="email" id="login-email" name="email" placeholder=" " required>
-                        <label for="login-email">Seu e-mail Facillit</label>
+            <div class="form-lado-a-lado">
+                <div class="logo-container">
+                    <img src="/imagens/LOGO/png/preta.svg" alt="Logo Facillit Hub" class="logo">
+                </div>
+                <div class="form-wrapper">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar"></div>
                     </div>
-
-                    <div class="floating-label-group">
-                        <input type="password" id="login-password" name="password" placeholder=" " required>
-                        <label for="login-password">Sua senha</label>
-                    </div>
-
-                    <div class="login-options">
-                        <div class="custom-checkbox">
-                            <input type="checkbox" id="remember-me" name="remember-me">
-                            <label for="remember-me">Lembrar-me</label>
+                    <form id="facilit-hub-form" novalidate>
+                        <div class="form-step" data-step="welcome">
+                            <h2 class="step-title">Olá! É a sua primeira vez por aqui?</h2>
+                            <div class="options-group">
+                                <button type="button" class="btn btn-primary" data-nav-action="go" data-target-step="profile-select">Sim</button>
+                                <a href="login.html" class="btn btn-secondary">Não, já tenho conta</a>
+                            </div>
                         </div>
-                        <a href="#" class="forgot-password-link">Esqueceu sua senha?</a>
-                    </div>
-                    
-                    <p class="error-message" id="login-error-message"></p>
-
-                    <button type="submit" class="btn btn-primary btn-full" id="login-button">Entrar</button>
-
-                    <p class="register-link">
-                        Não tem uma conta? <a href="register.html">Cadastre-se</a>
-                    </p>
-                </form>
+                        
+                        </form>
+                </div>
             </div>
         </div>
-    </div>
+        </section>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <script src="/js/background.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="/js/login.js"></script>
+    <script src="/js/register.js"></script>
 </body>
 </html>

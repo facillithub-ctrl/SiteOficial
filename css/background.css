@@ -1,0 +1,35 @@
+/* css/background.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    color: #212529; /* Cor de texto padrão */
+}
+
+#hero-background {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 20px; /* Adiciona o mesmo padding do seu body original */
+    background: linear-gradient(45deg, #1a237e, #2e14ed, #4a148c);
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Camada inferior */
+}
+
+/* Garante que o formulário fique por cima da animação */
+.cadastro-container {
+    position: relative;
+    z-index: 2; /* Camada superior */
+}

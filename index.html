@@ -1,48 +1,194 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facillit Hub</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>  
-    <header class="site-header">
-    <h1>Facillit Hub</h1>
-    <nav>
-        <ul>
-            <li><a href="#beginning">Início</a></li>
-            <li><a href="#about">Sobre</a></li>
-            <li><a href="#services">Serviços</a></li>
-            <li><a href="#contacts">Contato</a></li>
-        </ul>
-    </nav>
-</header>
-    <main>
-        <section id="beginning">
-            <h2>Início</h2>
-            <p>Bem-vindo à primeira seção.</p>
-        </section>
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="Author" content="Pedro Jean Maia, Igor Santos">
+        <title>Facillit Hub: Uma Nova Experiência Digital</title>
+        <link href="https://fonts.googleapis.com/css?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
 
-        <section id="about">
-            <h2>Sobre</h2>
-            <p>Informações sobre nós...</p>
-        </section>
+        <header class="site-header">
+            <div class="container header-content">
+                <div class="header-left">
+                    <div class="logo"><img src="/imagens/LOGO/png/logoazul.png" alt="Facillit Hub Logo"></div>
+                    <nav class="menu">
+                        <ul>
+                            <li><a href="#" data-index="0" class="active">Início</a></li>
+                            <li><a href="#" data-index="1">Diferenciais</a></li>
+                            <li><a href="#" data-index="2">Módulos</a></li>
+                            <li><a href="#" data-index="3">Para Quem</a></li>
+                            <li><a href="#" data-index="4">Contato</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header-right">
+                    <a href="pages/login.html" class="btn-link">Login</a>
+                    <a href="pages/register.html" class="btn btn-primary">COMEÇAR AGORA</a>
+                </div>
+                <button class="hamburger" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
 
-        <section id="services">
-            <h2>Serviços</h2>
-            <p>Lista dos serviços oferecidos...</p>
-        </section>
+        <div class="fullpage-container">
 
-        <section id="contacts">
-            <h2>Contato</h2>
-            <p>Formas de falar conosco...</p>
-        </section>
-        <div class="footer">
-            <p>&copy; 2023 Facillit Hub. Todos os direitos reservados.</p>  
-    </main>
-</body>
-</html>
+            <section class="section fullpage-section" id="hero">
+                <div id="particles-js"></div>
+                <div class="hero-content">
+                    <h1 class="hero-title">Transformando Ideias em Resultados Reais</h1>
+                    <p class="hero-subtitle">Integramos educação, produtividade e bem-estar em uma experiência única, simples e eficaz.</p>
+                    <a href="#modules" class="hero-cta-button">Explore o Ecossistema</a>
+                </div>
+            </section>
+
+            <section class="section fullpage-section" id="features">
+        <div class="orbital-container">
+            <div class="hub-center">
+                <h2>O que torna o Hub Único?</h2>
+            </div>
+
+            <div class="orbit" id="orbit-1">
+                <div class="feature-planet" id="planet-1">
+                    <div class="planet-content">
+                        <i class="fas fa-sitemap"></i>
+                        <h3>Plataforma Tudo-em-Um</h3>
+                        <p>Estudos, finanças, saúde e tarefas em um só lugar.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="orbit" id="orbit-2">
+                <div class="feature-planet" id="planet-2">
+                    <div class="planet-content">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Inteligência Integrada</h3>
+                        <p>Nossos módulos se comunicam para oferecer insights.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="orbit" id="orbit-3">
+                <div class="feature-planet" id="planet-3">
+                    <div class="planet-content">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Alinhado à BNCC</h3>
+                        <p>Ferramentas alinhadas às diretrizes curriculares.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            <section class="section fullpage-section" id="modules">
+        <div class="container">
+            <h2>Nossos Módulos</h2>
+            <p class="modules-subtitle">Passe o mouse sobre um módulo para saber mais.</p>
+            <div class="modules-layout">
+                <div class="module-card-list">
+                    <div class="card" data-module="edu">
+                        <div class="card-content"><i class="fas fa-graduation-cap"></i><h3>Facillit Edu</h3><p>Gestão pedagógica e acompanhamento de alunos.</p></div>
+                        <div class="bg"></div><div class="blob"></div>
+                    </div>
+                    <div class="card" data-module="games">
+                        <div class="card-content"><i class="fas fa-gamepad"></i><h3>Facillit Games</h3><p>Aprenda de forma divertida com jogos educativos.</p></div>
+                        <div class="bg"></div><div class="blob"></div>
+                    </div>
+                    <div class="card" data-module="write">
+                        <div class="card-content"><i class="fas fa-pencil-alt"></i><h3>Facillit Write</h3><p>Aprimore sua escrita com correções por IA e tutores.</p></div>
+                        <div class="bg"></div><div class="blob"></div>
+                    </div>
+                    <div class="card" data-module="day">
+                        <div class="card-content"><i class="fas fa-calendar-check"></i><h3>Facillit Day</h3><p>Integre agenda, tarefas, finanças e hábitos.</p></div>
+                        <div class="bg"></div><div class="blob"></div>
+                    </div>
+                </div>
+
+                <div class="module-detail-view">
+                    <div class="detail-panel" id="detail-edu">
+                        <div class="panel-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h3>Facillit Edu</h3>
+                        <p>Plataforma completa para instituições de ensino, alinhada à BNCC. Otimize o tempo de professores e gestores.</p>
+                        <ul class="features-list">
+                            <li>Planos de aula e distribuição de tarefas</li>
+                            <li>Dashboard de progresso individual dos alunos</li>
+                            <li>Relatórios pedagógicos automatizados</li>
+                        </ul>
+                        <div class="sp"><button class="sparkle-button"><span class="text">Explorar o Edu</span></button></div>
+                    </div>
+                    <div class="detail-panel" id="detail-games">
+                        <div class="panel-icon"><i class="fas fa-gamepad"></i></div>
+                        <h3>Facillit Games</h3>
+                        <p>Inovação pedagógica através da gamificação. Transforme o aprendizado em uma aventura divertida e engajante.</p>
+                        <ul class="features-list">
+                            <li>Biblioteca de jogos por matéria e habilidade</li>
+                            <li>Sistema de pontos, medalhas e rankings</li>
+                            <li>Adaptação de dificuldade ao nível do jogador</li>
+                        </ul>
+                        <div class="sp"><button class="sparkle-button"><span class="text">Ver Jogos</span></button></div>
+                    </div>
+                    <div class="detail-panel" id="detail-write">
+                    <div class="panel-icon"><i class="fas fa-pencil-alt"></i></div>
+                    <h3>Facillit Write</h3>
+                    <p>Receba feedback instantâneo de nossa IA e análises detalhadas de tutores humanos para elevar sua escrita a outro nível.</p>
+                    <ul class="features-list">
+                            <li>Correção gramatical e de coesão por IA</li>
+                            <li>Feedback qualitativo de corretores reais</li>
+                            <li>Análise baseada nos critérios do ENEM</li>
+                        </ul>
+                    <div class="sp"><button class="sparkle-button"><span class="text">Começar a Escrever</span></button></div>
+                    </div>
+                    <div class="detail-panel" id="detail-day">
+                    <div class="panel-icon"><i class="fas fa-calendar-check"></i></div>
+                    <h3>Facillit Day</h3>
+                    <p>O assistente pessoal inteligente que centraliza sua agenda, tarefas, finanças e hábitos para máxima produtividade.</p>
+                    <ul class="features-list">
+                            <li>Integração de agenda, tarefas e finanças</li>
+                            <li>Monitoramento de hábitos e metas</li>
+                            <li>Sugestões proativas para otimizar seu dia</li>
+                        </ul>
+                    <div class="sp"><button class="sparkle-button"><span class="text">Organizar meu Dia</span></button></div>
+                    </div>
+                    <div class="detail-panel default-panel active">
+                        <i class="fas fa-arrow-left"></i>
+                        <h4>Explore nossos módulos</h4>
+                        <p>Passe o mouse sobre um card na esquerda para ver os detalhes completos aqui.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            <section class="section fullpage-section" id="audience">
+        <div class="container">
+            <h2>Feito para todos que buscam evoluir</h2>
+            <div class="audience-grid">
+                <div class="audience-item spotlight-card">
+                    <i class="fas fa-user-graduate"></i>
+                    <h3>Estudantes</h3>
+                    <p>Organize seus estudos e metas.</p>
+                </div>
+                <div class="audience-item spotlight-card">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Profissionais</h3>
+                    <p>Equilibre trabalho e vida pessoal.</p>
+                </div>
+                <div class="audience-item spotlight-card">
+                    <i class="fas fa-school"></i>
+                    <h3>Instituições</h3>
+                    <p>Inove na gestão pedagógica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            <section class="section fullpage-section" id="footer-section">
+                <footer class="site-footer-large"><div class="container"><div class="footer-grid"><div class="footer-column-logo"><img src="imagens/LOGO/png/logobranca.png" alt="Facillit Hub Logo"></div><div class="footer-column"><h5>Módulos</h5><ul><li><a href="#">Facillit Edu</a></li><li><a href="#">Facillit Games</a></li><li><a href="#">Facillit Write</a></li><li><a href="#">Facillit Day</a></li></ul></div><div class="footer-column"><h5>Soluções</h5><ul><li><a href="#">Para Pessoas</a></li><li><a href="#">Para Escolas</a></li><li><a href="#">Para Empresas</a></li></ul></div><div class="footer-column"><h5>Empresa</h5><ul><li><a href="#">Sobre Nós</a></li><li><a href="#">Carreiras</a></li><li><a href="#">Contato</a></li></ul></div><div class="footer-column"> <h5>Recursos</h5><ul><li><a href="#">Termos de Uso</a></li><li><a href="#">Central de Ajuda</a></li><li><a href="#">Comunidade</a></li></ul></div></div><div class="footer-bottom"><p>&copy; 2025 Facillit Hub.</p><div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div></div></footer>
+            </section>
+
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+    </html>

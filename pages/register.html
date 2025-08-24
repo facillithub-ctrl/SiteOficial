@@ -7,9 +7,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="/css/background.css">
 </head>
 <body>
+
+<section id="hero-background">
+    <div id="particles-js"></div>
 
     <div class="cadastro-container">
         <div class="mascote-container">
@@ -23,7 +28,6 @@
                 <div class="progress-bar-container">
                     <div class="progress-bar"></div>
                 </div>
-
                 <form id="facilit-hub-form" novalidate>
                     <div class="form-step" data-step="welcome">
                         <h2 class="step-title">Olá! É a sua primeira vez por aqui?</h2>
@@ -40,13 +44,12 @@
                             <button type="button" class="btn btn-primary btn-full" data-profile="teacher">Sou Professor</button>
                             <button type="button" class="btn btn-primary btn-full" data-profile="manager">Sou Gestor</button>
                         </div>
-                         <div class="step-navigation">
+                        <div class="step-navigation">
                             <button type="button" class="btn btn-secondary" data-nav-action="back">Voltar</button>
                         </div>
                     </div>
                     
-                    <div class="form-step" data-step="dynamic-question-container">
-                        </div>
+                    <div class="form-step" data-step="dynamic-question-container"></div>
 
                     <div class="form-step" data-step="create-account">
                         <h2 class="step-title" id="account-title">Quase lá! Vamos criar sua conta.</h2>
@@ -57,13 +60,13 @@
                         </div>
                         <div class="floating-label-group">
                             <input type="password" id="main-password" name="password" placeholder=" " required>
-                             <label for="main-password">Crie uma senha</label>
+                            <label for="main-password">Crie uma senha</label>
                         </div>
                         <div class="custom-checkbox">
                             <input type="checkbox" id="terms" name="terms" required>
                             <label for="terms">Li e concordo com os <a href="#">termos e condições</a></label>
                         </div>
-                         <div class="step-navigation">
+                        <div class="step-navigation">
                             <button type="button" class="btn btn-secondary" data-nav-action="back">Voltar</button>
                             <button type="button" class="btn btn-primary" data-nav-action="go" data-target-step="configure-profile">Avançar</button>
                         </div>
@@ -71,18 +74,18 @@
 
                     <div class="form-step" data-step="configure-profile">
                         <h2 class="step-title" id="config-title">Personalize seu perfil</h2>
-                         <div class="floating-label-group">
+                        <div class="floating-label-group">
                             <input type="text" id="nickname" name="nickname" placeholder=" ">
                             <label for="nickname">Como gostaria de ser chamado(a)? (Apelido)</label>
                         </div>
                         <div class="custom-select-wrapper">
-                             <select id="pronoun" name="pronoun">
+                            <select id="pronoun" name="pronoun">
                                 <option value="" disabled selected>Pronome de tratamento...</option>
                                 <option value="Ele/Dele">Ele/Dele</option>
                                 <option value="Ela/Dela">Ela/Dela</option>
                                 <option value="Elu/Delu">Elu/Delu</option>
                                 <option value="Nenhum">Prefiro não usar</option>
-                             </select>
+                            </select>
                         </div>
                         <p class="step-subtitle" style="margin-top: 20px;">Adicione uma foto de perfil:</p>
                         <div class="avatar-options">
@@ -100,13 +103,14 @@
                         <p class="step-subtitle" id="final-message">Seja bem-vindo(a)!</p>
                         <a href="#" class="btn btn-primary btn-full">Ir para o painel inicial</a>
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
+</section>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/js/register.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="/js/register.js"></script>
 </body>
 </html>

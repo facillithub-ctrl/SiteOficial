@@ -8,28 +8,18 @@
     --light-text: #6c757d;
     --white: #ffffff;
     --border-color: rgba(255, 255, 255, 0.5);
+    /* Estas variáveis não são mais necessárias para o fundo principal, mas podem ser usadas em outros lugares */
     --background-start: #e0c3fc;
     --background-end: #8ec5fc;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
-    color: var(--dark-text);    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
 /* ---- 2. LAYOUT PRINCIPAL COM IMAGEM ---- */
 .cadastro-container {
     display: flex;
     background: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 24px;
     border: 1px solid var(--border-color);
