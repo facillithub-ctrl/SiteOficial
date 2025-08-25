@@ -42,4 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Funcionalidade para o menu Hamburger
+    const hamburger = document.querySelector('.hamburger');
+    const menuContainer = document.querySelector('.menu-container');
+
+    hamburger.addEventListener('click', function() {
+        menuContainer.classList.toggle('active');
+    });
+
 });
