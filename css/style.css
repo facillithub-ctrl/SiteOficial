@@ -184,7 +184,7 @@ main#fullpage-container { height: auto; width: 100%; }
 .footer-bottom { border-top: 1px solid #444; padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
 .social-icons a { color: #ccc; margin-left: 15px; font-size: 20px; }
 
-/* --- RESPONSIVIDADE (AJUSTES FINAIS) --- */
+/* --- RESPONSIVIDADE --- */
 @media (max-width: 1200px) {
     .site-header { width: 100%; top: 0; left: 0; transform: none; border-radius: 0; padding: 10px 20px; }
     .menu-container { display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--white); box-shadow: 0 8px 20px rgba(0,0,0,0.1); padding: 0; border-bottom: 1px solid var(--header-border); }
@@ -197,18 +197,25 @@ main#fullpage-container { height: auto; width: 100%; }
     }
     
     .menu ul { flex-direction: column; align-items: stretch; gap: 0; }
-    .menu ul li { width: 100%; text-align: center; }
     
-    /* CORREÇÃO FINAL DE ALINHAMENTO */
+    /* CORREÇÃO FINAL DE CENTRALIZAÇÃO */
+    .menu ul li { 
+        width: 100%; 
+        text-align: center; /* Garante que o texto dentro do 'a' possa ser centralizado */
+        display: flex; /* Adicionado para permitir o alinhamento */
+        justify-content: center; /* Adicionado para centralizar o link */
+    }
     .menu ul li a { 
+        width: 100%; /* Faz o link ocupar todo o espaço do li */
         padding: 15px 45px 15px 20px; 
         color: var(--dark-text) !important; 
         border-bottom: 1px solid #f0f0f0; 
         position: relative; 
-        display: flex; /* MANTIDO COMO FLEX */
+        display: flex;
         align-items: center; 
-        justify-content: center; /* MANTIDO PARA CENTRALIZAR */
+        justify-content: center;
     }
+
     .menu ul li a i.fa-chevron-down { 
         position: absolute; 
         right: 20px; 
@@ -238,7 +245,7 @@ main#fullpage-container { height: auto; width: 100%; }
         padding: 12px 20px 12px 40px; 
         border-bottom: none; 
         background-color: transparent; 
-        justify-content: flex-start; /* Itens do submenu alinhados à esquerda */
+        justify-content: flex-start; 
         text-align: left; 
     }
     .dropdown-column ul li a:hover { background-color: #e9ecef; }
@@ -257,6 +264,12 @@ main#fullpage-container { height: auto; width: 100%; }
     .section-title { font-size: 36px; }
     .section { padding: 100px 15px; }
     .audience-layout, .features-grid-new, .modules-grid-container { grid-template-columns: 1fr; }
+    
+    /* CORREÇÃO: Alinhamento do título da seção de depoimentos */
+    #testimonials .section-title {
+        text-align: center;
+    }
+
     .footer-content h2 { font-size: 38px; }
     .footer-grid { grid-template-columns: 1fr; }
     .footer-column { text-align: center; }
