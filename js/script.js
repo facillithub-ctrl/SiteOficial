@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         hamburger.setAttribute('aria-expanded', !isExpanded);
         menuContainer.classList.toggle('active');
 
-        // ADIÇÃO: Trava e destrava o scroll da página principal
+        // Trava e destrava o scroll da página principal
         document.body.classList.toggle('noscroll');
 
         // Fecha submenus ao fechar o menu principal
