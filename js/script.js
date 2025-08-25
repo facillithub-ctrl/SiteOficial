@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.querySelector('.hamburger');
     const menuContainer = document.querySelector('.menu-container');
 
-    // --- 1. LÓGICA DO MENU HAMBURGER E DROPDOWNS ---
+    // --- 1. LÓGICA DO MENU HAMBURGER E DROPDOWNS (ESTILO ACORDEÃO) ---
     
     // Abrir e fechar o menu principal no mobile
     hamburger.addEventListener('click', function() {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         hamburger.setAttribute('aria-expanded', !isExpanded);
         menuContainer.classList.toggle('active');
 
-        // Fecha todos os submenus ao fechar o menu principal
+        // Fecha todos os submenus (acordeões) ao fechar o menu principal
         if (!menuContainer.classList.contains('active')) {
             document.querySelectorAll('.has-megadropdown.active').forEach(item => {
                 item.classList.remove('active');
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Lógica para abrir/fechar os dropdowns dentro do menu mobile
+    // Lógica para abrir/fechar os dropdowns (acordeão) no mobile
     const dropdownToggles = document.querySelectorAll('.has-megadropdown > a');
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', (e) => {
@@ -30,37 +30,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const parentLi = toggle.parentElement; // O <li> que contém o link e o dropdown
 
-                // Fecha outros dropdowns abertos no mesmo nível
-                parentLi.parentElement.querySelectorAll('.has-megadropdown').forEach(otherLi => {
+                // Fecha outros acordeões abertos para que apenas um fique aberto de cada vez
+                document.querySelectorAll('.has-megadropdown').forEach(otherLi => {
                     if (otherLi !== parentLi) {
                         otherLi.classList.remove('active');
                     }
                 });
                 
-                // Abre ou fecha o dropdown clicado
+                // Abre ou fecha o acordeão clicado
                 parentLi.classList.toggle('active');
             }
         });
     });
 
     // --- 2. HEADER DINÂMICO (MUDA DE COR AO ROLAR) ---
+    // Esta função agora funciona para todos os tamanhos de tela baseada no scroll normal
     function handleHeaderScroll() {
-        // Em telas mobile/tablet, a lógica é baseada no scrollY normal
-        if (window.innerWidth <= 1200) {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        }
-        // Em telas grandes, a lógica pode ser diferente (se usar o scroll por seção)
-        // Por segurança, mantemos a lógica de scrollY para todos os casos.
-        else {
-             if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
         }
     }
     window.addEventListener('scroll', handleHeaderScroll);
@@ -98,10 +87,8 @@ document.addEventListener('DOMContentLoaded', function () {
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
         const answer = item.querySelector('.faq-answer');
-
         question.addEventListener('click', () => {
             const isExpanded = question.getAttribute('aria-expanded') === 'true';
-
             // Fecha todos os outros itens
             faqItems.forEach(otherItem => {
                 if(otherItem !== item){
@@ -109,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     otherItem.querySelector('.faq-answer').style.maxHeight = null;
                 }
             });
-
             // Abre ou fecha o item clicado
             if (isExpanded) {
                 question.setAttribute('aria-expanded', 'false');
@@ -127,4 +113,5 @@ document.addEventListener('DOMContentLoaded', function () {
             "particles": { "number": { "value": 110, "density": { "enable": true, "value_area": 900 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", }, "opacity": { "value": 0.5, "random": false, }, "size": { "value": 3, "random": true, }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "repulse": { "distance": 90, "duration": 0.4 }, "push": { "particles_nb": 4 } } }, "retina_detect": true
         });
     }
+
 });
