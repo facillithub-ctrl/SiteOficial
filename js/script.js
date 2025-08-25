@@ -1,64 +1,51 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // --- 1. LÓGICA PARA SCROLL DE PÁGINA INTEIRA ---
-    const container = document.getElementById('fullpage-container');
-    const sections = document.querySelectorAll('.section');
-    let currentSection = 0;
-    let isScrolling = false;
-    const scrollThreshold = 100; // ms de espera entre scrolls
+    const header = document.querySelector('.site-header');
+    const hamburger = document.querySelector('.hamburger');
+    const menuContainer = document.querySelector('.menu-container');
 
-    function scrollToSection(sectionIndex) {
-        if (sectionIndex >= 0 && sectionIndex < sections.length) {
-            container.style.transform = `translateY(-${sectionIndex * 100}vh)`;
-            currentSection = sectionIndex;
+    // --- 1. LÓGICA DO MENU HAMBURGER E DROPDOWNS ---
+    
+    // Abrir e fechar o menu principal no mobile
+    hamburger.addEventListener('click', function() {
+        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !isExpanded);
+        menuContainer.classList.toggle('active');
+
+        // Fecha todos os submenus ao fechar o menu principal
+        if (!menuContainer.classList.contains('active')) {
+            document.querySelectorAll('.has-megadropdown.active').forEach(item => {
+                item.classList.remove('active');
+            });
         }
-    }
-
-    // Scroll com o mouse
-    window.addEventListener('wheel', (e) => {
-        if (window.innerWidth <= 1200) return;
-        if (isScrolling) return;
-        isScrolling = true;
-
-        if (e.deltaY > 0) {
-            scrollToSection(currentSection + 1);
-        } else {
-            scrollToSection(currentSection - 1);
-        }
-
-        setTimeout(() => { isScrolling = false; }, 1000 + scrollThreshold);
     });
 
-    // Navegação via links âncora
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-             if (window.innerWidth > 1200 && href !== '#') {
-                e.preventDefault();
-                const targetId = href.substring(1);
-                const targetSection = document.getElementById(targetId);
-                if(targetSection){
-                    const targetIndex = Array.from(sections).indexOf(targetSection);
-                    scrollToSection(targetIndex);
-                }
+    // Lógica para abrir/fechar os dropdowns dentro do menu mobile
+    const dropdownToggles = document.querySelectorAll('.has-megadropdown > a');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            // Só executa esta lógica se o menu hamburger estiver visível
+            if (window.innerWidth <= 1200) {
+                e.preventDefault(); // Impede que o link navegue
+
+                const parentLi = toggle.parentElement; // O <li> que contém o link e o dropdown
+
+                // Fecha outros dropdowns abertos no mesmo nível
+                parentLi.parentElement.querySelectorAll('.has-megadropdown').forEach(otherLi => {
+                    if (otherLi !== parentLi) {
+                        otherLi.classList.remove('active');
+                    }
+                });
+                
+                // Abre ou fecha o dropdown clicado
+                parentLi.classList.toggle('active');
             }
         });
     });
 
-    // --- 2. HEADER DINÂMICO ---
-    const header = document.querySelector('.site-header');
-
-    const updateHeaderState = () => {
-         if (currentSection > 0) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    };
-
-    container.addEventListener('transitionend', updateHeaderState);
-
-    window.addEventListener('scroll', () => {
+    // --- 2. HEADER DINÂMICO (MUDA DE COR AO ROLAR) ---
+    function handleHeaderScroll() {
+        // Em telas mobile/tablet, a lógica é baseada no scrollY normal
         if (window.innerWidth <= 1200) {
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
@@ -66,20 +53,32 @@ document.addEventListener('DOMContentLoaded', function () {
                 header.classList.remove('scrolled');
             }
         }
-    });
+        // Em telas grandes, a lógica pode ser diferente (se usar o scroll por seção)
+        // Por segurança, mantemos a lógica de scrollY para todos os casos.
+        else {
+             if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+    }
+    window.addEventListener('scroll', handleHeaderScroll);
+    handleHeaderScroll(); // Executa uma vez no carregamento da página
 
     // --- 3. MÓDULOS CLICÁVEIS (FLIP CARD) ---
     const moduleCards = document.querySelectorAll('.module-card');
     moduleCards.forEach(card => {
         card.addEventListener('click', (e) => {
-            if (e.target.closest('.module-cta')) {
-                return;
-            }
+            if (e.target.closest('.module-cta')) return; // Não vira o card se clicar no link "Saber mais"
+            
+            // Fecha outros cards abertos
             moduleCards.forEach(otherCard => {
                 if(otherCard !== card) {
                     otherCard.classList.remove('is-flipped');
                 }
             });
+            // Vira o card clicado
             card.classList.toggle('is-flipped');
         });
     });
@@ -94,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // --- 5. LÓGICA DO FAQ ---
+    // --- 5. LÓGICA DO FAQ (ACORDEÃO) ---
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
@@ -103,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
         question.addEventListener('click', () => {
             const isExpanded = question.getAttribute('aria-expanded') === 'true';
 
-            // Fecha todos os outros itens para manter apenas um aberto
+            // Fecha todos os outros itens
             faqItems.forEach(otherItem => {
                 if(otherItem !== item){
                     otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
@@ -111,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            // Abre ou fecha o item que foi clicado
+            // Abre ou fecha o item clicado
             if (isExpanded) {
                 question.setAttribute('aria-expanded', 'false');
                 answer.style.maxHeight = null;
@@ -122,52 +121,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // --- 6. FUNCIONALIDADES ANTERIORES ---
+    // --- 6. ANIMAÇÃO DE PARTÍCULAS (SE EXISTIR) ---
     if (document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             "particles": { "number": { "value": 110, "density": { "enable": true, "value_area": 900 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", }, "opacity": { "value": 0.5, "random": false, }, "size": { "value": 3, "random": true, }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "repulse": { "distance": 90, "duration": 0.4 }, "push": { "particles_nb": 4 } } }, "retina_detect": true
         });
     }
-
-    const spotlightCards = document.querySelectorAll('.spotlight-card');
-    spotlightCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        });
-    });
-
-    const hamburger = document.querySelector('.hamburger');
-    const menuContainer = document.querySelector('.menu-container');
-    hamburger.addEventListener('click', function() {
-        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-        hamburger.setAttribute('aria-expanded', !isExpanded);
-        menuContainer.classList.toggle('active');
-    });
-
-    // --- 7. LÓGICA DO DROPDOWN MOBILE (AJUSTADA) ---
-    const dropdownToggles = document.querySelectorAll('.has-megadropdown > a');
-    dropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', (e) => {
-            // Verifica se estamos em modo "mobile" (menu hambúrguer ativo)
-            if (window.innerWidth <= 1200 && menuContainer.classList.contains('active')) {
-                e.preventDefault(); // Previne a navegação ao clicar no link principal do dropdown
-
-                const parentLi = toggle.parentElement; // Pega o elemento <li> pai
-
-                // Fecha outros dropdowns que possam estar abertos
-                parentLi.parentElement.querySelectorAll('.has-megadropdown').forEach(otherLi => {
-                    if (otherLi !== parentLi) {
-                        otherLi.classList.remove('active');
-                    }
-                });
-                
-                // Adiciona ou remove a classe 'active' no <li> para abrir/fechar o dropdown
-                parentLi.classList.toggle('active');
-            }
-        });
-    });
 });
