@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- 2. HEADER DINÂMICO ---
     const header = document.querySelector('.site-header');
-    
+
     const updateHeaderState = () => {
          if (currentSection > 0) {
             header.classList.add('scrolled');
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             header.classList.remove('scrolled');
         }
     };
-    
+
     container.addEventListener('transitionend', updateHeaderState);
 
     window.addEventListener('scroll', () => {
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         question.addEventListener('click', () => {
             const isExpanded = question.getAttribute('aria-expanded') === 'true';
-            
+
             // Fecha todos os outros itens para manter apenas um aberto
             faqItems.forEach(otherItem => {
                 if(otherItem !== item){
@@ -148,17 +148,25 @@ document.addEventListener('DOMContentLoaded', function () {
         menuContainer.classList.toggle('active');
     });
 
+    // --- 7. LÓGICA DO DROPDOWN MOBILE (AJUSTADA) ---
     const dropdownToggles = document.querySelectorAll('.has-megadropdown > a');
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', (e) => {
+            // Verifica se estamos em modo "mobile" (menu hambúrguer ativo)
             if (window.innerWidth <= 1200 && menuContainer.classList.contains('active')) {
-                e.preventDefault();
-                dropdownToggles.forEach(otherToggle => {
-                    if (otherToggle !== toggle) {
-                        otherToggle.classList.remove('active');
+                e.preventDefault(); // Previne a navegação ao clicar no link principal do dropdown
+
+                const parentLi = toggle.parentElement; // Pega o elemento <li> pai
+
+                // Fecha outros dropdowns que possam estar abertos
+                parentLi.parentElement.querySelectorAll('.has-megadropdown').forEach(otherLi => {
+                    if (otherLi !== parentLi) {
+                        otherLi.classList.remove('active');
                     }
                 });
-                toggle.classList.toggle('active');
+                
+                // Adiciona ou remove a classe 'active' no <li> para abrir/fechar o dropdown
+                parentLi.classList.toggle('active');
             }
         });
     });
