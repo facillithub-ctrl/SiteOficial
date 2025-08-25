@@ -14,10 +14,14 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* --- CORREÇÃO GLOBAL: Impede a rolagem horizontal --- */
+/* --- CORREÇÕES GLOBAIS --- */
 html, body { 
     width: 100%;
     overflow-x: hidden; 
+}
+/* ADIÇÃO: Trava o scroll do body quando o menu mobile estiver aberto */
+body.noscroll {
+    overflow: hidden;
 }
 
 html { scroll-behavior: smooth; }
@@ -28,7 +32,7 @@ a:focus, button:focus { outline: 2px solid var(--royal-blue); outline-offset: 2p
 
 main#fullpage-container { height: auto; width: 100%; }
 
-/* --- HEADER (Estilos originais preservados) --- */
+/* --- HEADER ---*/
 .site-header {
     background-color: transparent;
     backdrop-filter: blur(5px);
@@ -73,7 +77,7 @@ main#fullpage-container { height: auto; width: 100%; }
 .btn-secondary:hover { background-color: var(--royal-blue); color: var(--white); }
 .hamburger { display: none; background: none; border: none; font-size: 24px; cursor: pointer; z-index: 1200; }
 
-/* --- DROPDOWNS (Desktop - Estilos originais preservados) --- */
+/* --- DROPDOWNS (Desktop) --- */
 .mega-dropdown { position: absolute; top: 150%; background-color: var(--white); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: top 0.3s ease, opacity 0.3s ease, visibility 0.3s ease; z-index: 1100; margin-top: 15px; left: 50%; transform: translateX(-50%); padding: 30px; }
 .has-megadropdown:hover .mega-dropdown { top: 100%; opacity: 1; visibility: visible; }
 .mega-dropdown .dropdown-grid { display: grid; gap: 30px; }
@@ -88,7 +92,7 @@ main#fullpage-container { height: auto; width: 100%; }
 .dropdown-column ul li a strong { font-size: 14px; font-weight: 700; color: var(--dark-text); }
 .dropdown-column ul li a span { font-size: 12px; font-weight: 400; color: var(--text-muted); }
 
-/* --- SECTIONS (Todos os seus estilos originais foram mantidos) --- */
+/* --- ESTILOS DAS SEÇÕES (Preservados integralmente) --- */
 .section { min-height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 20px; position: relative; }
 .section-title { font-size: 42px; margin-bottom: 20px; }
 .section-subtitle { font-size: 18px; color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; }
@@ -181,39 +185,49 @@ main#fullpage-container { height: auto; width: 100%; }
 .footer-bottom { border-top: 1px solid #444; padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
 .social-icons a { color: #ccc; margin-left: 15px; font-size: 20px; }
 
-/* --- RESPONSIVIDADE (ADIÇÕES E AJUSTES) --- */
+/* --- RESPONSIVIDADE (AJUSTES FINAIS) --- */
 @media (max-width: 1200px) {
     .site-header { width: 100%; top: 0; left: 0; transform: none; border-radius: 0; padding: 10px 20px; }
     .menu-container { display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--white); box-shadow: 0 8px 20px rgba(0,0,0,0.1); padding: 0; border-bottom: 1px solid var(--header-border); }
-    .menu-container.active { display: block; }
+    .menu-container.active { display: block; max-height: calc(100vh - 60px); overflow-y: auto; }
     .menu ul { flex-direction: column; align-items: stretch; gap: 0; }
     .menu ul li { width: 100%; text-align: left; }
-    .menu ul li a { padding: 15px 20px; justify-content: space-between; color: var(--dark-text) !important; border-bottom: 1px solid #f0f0f0; }
+    .menu ul li a { padding: 15px 20px; color: var(--dark-text) !important; border-bottom: 1px solid #f0f0f0; position: relative; }
+    
+    /* ADIÇÃO: Centraliza o texto e posiciona a seta à direita */
+    .menu ul li a {
+        justify-content: center; /* Centraliza o conteúdo (texto) */
+    }
+    .menu ul li a i.fa-chevron-down {
+        position: absolute;
+        right: 20px; /* Alinha a seta à direita */
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .has-megadropdown.active > a i.fa-chevron-down {
+        transform: translateY(-50%) rotate(180deg);
+    }
+    
     .hamburger { display: block; }
-
-    /* --- ESTILO ACORDEÃO (SLACK) PARA O DROPDOWN MOBILE --- */
-    .has-megadropdown > a i.fa-chevron-down { transition: transform 0.3s ease; }
-    .has-megadropdown.active > a i.fa-chevron-down { transform: rotate(180deg); }
 
     .has-megadropdown .mega-dropdown {
         position: static; opacity: 1; visibility: visible; box-shadow: none; transform: none;
-        padding: 0; margin-top: 0; max-height: 0; /* Inicia fechado */
+        padding: 0; margin-top: 0; max-height: 0;
         overflow: hidden; transition: max-height 0.5s ease-out, padding 0.5s ease-out;
         min-width: unset !important; width: 100%; background-color: #f8f9fa;
         border-radius: 0; border-bottom: 1px solid #e0e0e0;
     }
     .has-megadropdown.active .mega-dropdown {
-        max-height: 1000px; /* Altura máxima para animação */
-        padding: 10px 0; /* Espaçamento interno quando aberto */
+        max-height: 1000px;
+        padding: 10px 0;
     }
     .mega-dropdown .dropdown-grid {
-        display: block; /* Remove o grid */
-        min-width: unset; width: 100%; padding: 0; gap: 0;
+        display: block; min-width: unset; width: 100%; padding: 0; gap: 0;
     }
     .dropdown-column { margin-bottom: 10px; }
-    .dropdown-column h5 { display: none; } /* Esconde títulos das colunas no mobile */
+    .dropdown-column h5 { display: none; }
     .dropdown-column ul { gap: 0; }
-    .dropdown-column ul li a { padding: 12px 20px 12px 40px; border-bottom: none; background-color: transparent; }
+    .dropdown-column ul li a { padding: 12px 20px 12px 40px; border-bottom: none; background-color: transparent; justify-content: flex-start; }
     .dropdown-column ul li a:hover { background-color: #e9ecef; }
     .dropdown-column ul li a strong { font-size: 14px; }
     .dropdown-column ul li a span { font-size: 12px; }
