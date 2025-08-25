@@ -191,25 +191,17 @@ main#fullpage-container { height: auto; width: 100%; }
     .menu-container { display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--white); box-shadow: 0 8px 20px rgba(0,0,0,0.1); padding: 0; border-bottom: 1px solid var(--header-border); }
     .menu-container.active { display: block; max-height: calc(100vh - 60px); overflow-y: auto; }
     .menu ul { flex-direction: column; align-items: stretch; gap: 0; }
-    .menu ul li { width: 100%; text-align: left; }
-    .menu ul li a { padding: 15px 20px; color: var(--dark-text) !important; border-bottom: 1px solid #f0f0f0; position: relative; }
     
-    /* ADIÇÃO: Centraliza o texto e posiciona a seta à direita */
-    .menu ul li a {
-        justify-content: center; /* Centraliza o conteúdo (texto) */
+    /* CORREÇÃO FINAL: Garante a centralização do texto */
+    .menu ul li { 
+        width: 100%; 
+        text-align: center; /* Força o alinhamento do texto ao centro */
     }
-    .menu ul li a i.fa-chevron-down {
-        position: absolute;
-        right: 20px; /* Alinha a seta à direita */
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    .has-megadropdown.active > a i.fa-chevron-down {
-        transform: translateY(-50%) rotate(180deg);
-    }
-    
-    .hamburger { display: block; }
 
+    .menu ul li a { padding: 15px 45px; /* Aumenta o padding para a seta não sobrepor o texto */ color: var(--dark-text) !important; border-bottom: 1px solid #f0f0f0; position: relative; justify-content: center; }
+    .menu ul li a i.fa-chevron-down { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
+    .has-megadropdown.active > a i.fa-chevron-down { transform: translateY(-50%) rotate(180deg); }
+    .hamburger { display: block; }
     .has-megadropdown .mega-dropdown {
         position: static; opacity: 1; visibility: visible; box-shadow: none; transform: none;
         padding: 0; margin-top: 0; max-height: 0;
@@ -227,7 +219,7 @@ main#fullpage-container { height: auto; width: 100%; }
     .dropdown-column { margin-bottom: 10px; }
     .dropdown-column h5 { display: none; }
     .dropdown-column ul { gap: 0; }
-    .dropdown-column ul li a { padding: 12px 20px 12px 40px; border-bottom: none; background-color: transparent; justify-content: flex-start; }
+    .dropdown-column ul li a { padding: 12px 20px 12px 40px; border-bottom: none; background-color: transparent; justify-content: flex-start; text-align: left; }
     .dropdown-column ul li a:hover { background-color: #e9ecef; }
     .dropdown-column ul li a strong { font-size: 14px; }
     .dropdown-column ul li a span { font-size: 12px; }
