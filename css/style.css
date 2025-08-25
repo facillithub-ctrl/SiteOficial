@@ -191,9 +191,23 @@ main#fullpage-container { height: auto; width: 100%; }
     .menu-container.active { display: block; max-height: calc(100vh - 60px); overflow-y: auto; }
     
     /* ADIÇÃO: Efeito de transparência no menu mobile quando sobre a seção Hero */
-    .site-header:not(.scrolled) .menu-container.active {
-        background-color:white;
-    
+
+
+.site-header:not(.scrolled) .menu-container.active .menu ul li a {
+    color: var(--dark-text) !important; /* Texto escuro para contraste */
+}
+
+/* HOTFIX — manter menu mobile legível sobre o hero */
+@media (max-width: 1200px) {
+  .site-header:not(.scrolled) .menu-container.active {
+    background-color: #fff;   /* fundo sólido */
+    backdrop-filter: none;
+  }
+  .site-header:not(.scrolled) .menu-container.active .menu ul li a {
+    color: var(--dark-text) !important; /* texto escuro */
+  }
+}
+
     
     .menu ul { flex-direction: column; align-items: stretch; gap: 0; }
     
@@ -273,10 +287,29 @@ main#fullpage-container { height: auto; width: 100%; }
 }
 
 @media (max-width: 576px) {
-    .header-right .btn-link { display: none; }
-    .header-right .btn-primary { padding: 8px 12px; font-size: 14px; }
-    .section-title { font-size: 32px; }
-    .testimonial-card { width: calc(100vw - 40px); }
-    .footer-bottom { flex-direction: column; gap: 20px; }
-    .footer-content h2 { font-size: 36px; }
+    .header-right .btn-link { 
+        display: none; 
+    }
+
+    .header-right .btn-primary { 
+        padding: 8px 12px; 
+        font-size: 14px; 
+    }
+
+    .section-title { 
+        font-size: 32px; 
+    }
+
+    .testimonial-card { 
+        width: calc(100vw - 40px); 
+    }
+
+    .footer-bottom { 
+        flex-direction: column; 
+        gap: 20px; 
+    }
+
+    .footer-content h2 { 
+        font-size: 36px; 
+    }
 }
