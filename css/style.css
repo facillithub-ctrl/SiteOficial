@@ -238,7 +238,11 @@ main#fullpage-container {
 .footer-bottom { border-top: 1px solid #444; padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
 .social-icons a { color: #ccc; margin-left: 15px; font-size: 20px; }
 
-/* --- RESPONSIVIDADE --- */
+
+/* ---------------------------------------------------
+--- RESPONSIVIDADE --- MUDANÇAS IMPORTANTES ABAIXO ---
+---------------------------------------------------
+*/
 
 /* Telas de Tablet e telas menores de Desktop (Breakpoint principal) */
 @media (max-width: 1200px) {
@@ -246,19 +250,32 @@ main#fullpage-container {
         display: none;
         position: absolute;
         top: 85px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 95%;
+        left: 0;
+        transform: none; /* Resetando transformação */
+        width: 100%; /* Ocupa a largura toda */
         background-color: var(--white);
         box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         padding: 20px 0;
-        border-radius: 20px;
+        border-radius: 0; /* Tirando borda arredondada para o menu mobile */
         border: 1px solid var(--header-border);
     }
     .menu-container.active { display: block; }
-    .menu ul { flex-direction: column; align-items: center; gap: 0; }
-    .menu ul li { width: 100%; text-align: center; }
-    .menu ul li a { padding: 15px 0; justify-content: center; color: var(--dark-text) !important; }
+
+    /* Centralizando o conteúdo do menu mobile */
+    .menu ul { 
+        flex-direction: column; 
+        align-items: center; /* Centraliza os itens da lista */
+        gap: 0; 
+    }
+    .menu ul li { 
+        width: 100%; 
+        text-align: center; /* Centraliza o texto dentro dos itens */
+    }
+    .menu ul li a { 
+        padding: 15px 0; 
+        justify-content: center; /* Centraliza o link (caso seja flex) */
+        color: var(--dark-text) !important; 
+    }
     
     .has-megadropdown .mega-dropdown {
         display: none;
@@ -297,17 +314,23 @@ main#fullpage-container {
 
 /* Telas de Celular */
 @media (max-width: 768px) {
-    .site-header { padding: 10px 15px; } /* Menor padding no header */
+    .site-header { padding: 10px 15px; }
     .section { padding: 100px 15px; }
+
+    /* --- MUDANÇA AQUI: Cards um embaixo do outro --- */
+    .audience-layout {
+        grid-template-columns: 1fr; /* Força uma única coluna */
+    }
+    
     .footer-content h2 { font-size: 38px; }
     .footer-grid { grid-template-columns: 1fr; }
     .footer-column { text-align: center; }
 }
 
-/* Telas de Celular Pequenas (Ajuste fino) */
+/* Telas de Celular Pequenas */
 @media (max-width: 576px) {
-    .header-right .btn-link { display: none; } /* Esconde o botão "Acessar" para dar espaço */
-    .header-right .btn-primary { padding: 8px 12px; font-size: 14px; } /* Diminui o botão principal */
+    .header-right .btn-link { display: none; }
+    .header-right .btn-primary { padding: 8px 12px; font-size: 14px; }
     .section-title { font-size: 32px; }
     .modules-grid-container { grid-template-columns: 1fr; }
     .module-card { height: 240px; }
