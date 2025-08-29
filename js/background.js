@@ -1,16 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Garante que o elemento 'particles-js' existe na página antes de tentar iniciar a animação
     if (document.getElementById('particles-js')) {
         particlesJS('particles-js', {
           "particles": {
             "number": {
-              "value": 80,
+              "value": 80, // Número de partículas
               "density": {
                 "enable": true,
                 "value_area": 800
               }
             },
             "color": {
-              "value": "#2E14ED" // Alterado para a cor principal do site
+              "value": "#ffffff" // Cor das partículas e linhas para contrastar com o fundo azul
             },
             "shape": {
               "type": "circle"
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "line_linked": {
               "enable": true,
               "distance": 150,
-              "color": "#2E14ED", // Alterado para a cor principal do site
+              "color": "#ffffff", // Cor das linhas
               "opacity": 0.4,
               "width": 1
             },
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "events": {
               "onhover": {
                 "enable": true,
-                "mode": "repulse"
+                "mode": "repulse" // <- EFEITO DE INTERAÇÃO COM O MOUSE ESTÁ AQUI
               },
               "onclick": {
                 "enable": true,
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "modes": {
               "repulse": {
-                "distance": 100,
+                "distance": 100, // Distância que as partículas se afastam do mouse
                 "duration": 0.4
               },
               "push": {
