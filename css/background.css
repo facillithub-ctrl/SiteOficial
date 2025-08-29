@@ -8,21 +8,19 @@ body {
     min-height: 100vh;
     padding: 20px;
     margin: 0;
-    /* Adicionado para garantir que o body ocupe 100% da largura e ocupe o espaço necessário para centralizar o conteúdo */
     width: 100%;
-    position: relative; /* Necessário para que o z-index funcione corretamente em relação aos filhos */
-    overflow: hidden; /* Garante que nada transborde */
+    position: relative;
+    overflow: hidden;
 }
 
 #hero-background {
-    position: fixed; /* Posição fixa para cobrir toda a viewport */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Gradiente original do index.html */
     background: linear-gradient(135deg, #2e14ed 0%, #0c0082 100%); 
-    z-index: -2; /* Coloca o fundo e as partículas bem atrás de todo o conteúdo */
+    z-index: -2;
 }
 
 #particles-js {
@@ -31,11 +29,41 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1; /* As partículas ficam na frente do gradiente, mas atrás do conteúdo principal */
+    z-index: -1;
 }
 
-/* Garante que o conteúdo principal (como o cadastro-container) fique por cima */
 .cadastro-container, .navbar, .hero-content {
-    position: relative; /* Eleva estes elementos acima do fundo e das partículas */
+    position: relative;
     z-index: 1; 
+}
+
+/* ---- NOVO BOTÃO DE VOLTAR ---- */
+.back-to-home {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-to-home:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.back-to-home svg {
+    width: 20px;
+    height: 20px;
 }
