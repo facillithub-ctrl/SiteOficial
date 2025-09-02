@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA na Pedagogia - Capacitação Online</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* O CSS está embutido neste arquivo, então não há necessidade de um link externo */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .hero { background-color: #2E14ED; color: white; min-height: 100vh; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(circle at 25px 25px, rgba(255,255,255,0.1) 2px, transparent 0), radial-gradient(circle at 75px 75px, rgba(255,255,255,0.1) 2px, transparent 0); background-size: 100px 100px; }
+        .hero-content { position: relative; z-index: 1; padding: 80px 0; }
+        .nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0 60px; }
+        .logo { font-size: 24px; font-weight: 700; }
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s ease; }
+        .nav-links a:hover { color: white; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-text h1 { font-size: 48px; font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
+        .hero-badge { display: inline-block; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 8px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; margin-bottom: 24px; }
+        .hero-description { font-size: 20px; margin-bottom: 32px; opacity: 0.9; }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn { padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer; font-size: 16px; }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-primary:hover { background: #1d4ed8; }
+        .btn-secondary { background: transparent; color: white; border: 2px solid rgba(255, 255, 255, 0.3); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
+        .hero-highlights { backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 32px; }
+        .hero-highlights h3 { font-size: 20px; font-weight: 600; margin-bottom: 24px; }
+        .highlight-item { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .highlight-dot { width: 8px; height: 8px; background: #60a5fa; border-radius: 50%; }
+        .main-section { padding: 80px 0; background: white; }
+        .section-header { text-align: center; margin-bottom: 64px; }
+        .section-header h2 { font-size: 36px; font-weight: 700; color: #1f2937; margin-bottom: 16px; }
+        .section-header p { font-size: 20px; color: #6b7280; max-width: 600px; margin: 0 auto; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-bottom: 64px; }
+        .feature-card { background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 32px; text-align: center; transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+        .feature-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
+        .feature-icon.blue { background: #dbeafe; } .feature-icon.green { background: #dcfce7; } .feature-icon.purple { background: #f3e8ff; }
+        .feature-icon svg { width: 24px; height: 24px; }
+        .feature-icon.blue svg { color: #2563eb; } .feature-icon.green svg { color: #2E14ED; } .feature-icon.purple svg { color: #2E14ED; }
+        .feature-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 16px; color: #1f2937; }
+        .feature-card p { color: #6b7280; }
+        .course-content { background: linear-gradient(135deg, #f9fafb 0%, #eff6ff 100%); border-radius: 24px; padding: 48px; }
+        .course-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+        .course-modules h3 { font-size: 28px; font-weight: 700; color: #1f2937; margin-bottom: 32px; }
+        .module-item { display: flex; gap: 16px; margin-bottom: 24px; }
+        .module-number { width: 32px; height: 32px; background-color: #2E14ED; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; flex-shrink: 0; }
+        .module-content h4 { font-weight: 600; color: #1f2937; margin-bottom: 4px; }
+        .module-content p { color: #6b7280; font-size: 14px; }
+        .pricing-card { background: white; border-radius: 16px; padding: 32px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+        .pricing-header { text-align: center; margin-bottom: 24px; }
+        .pricing-badge { background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #166534; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; display: inline-block; margin-bottom: 16px; }
+        .price { font-size: 48px; font-weight: 700; color: #1f2937; margin-bottom: 8px; }
+        .price-description { color: #6b7280; }
+        .pricing-features { margin-bottom: 24px; }
+        .pricing-feature { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 14px; color: #6b7280; }
+        .pricing-feature svg { width: 20px; height: 20px; color: #10b981; }
+        .bonus-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 16px; text-align: center; margin-bottom: 16px; }
+        .bonus-title { color: #1d4ed8; font-weight: 600; font-size: 12px; }
+        .bonus-description { color: #2563eb; font-size: 12px; }
+        .payment-info { text-align: center; font-size: 12px; color: #9ca3af; }
+        .registration-section { background-color: #2E14ED; padding: 80px 0; color: white; }
+        .form-container { max-width: 600px; margin: 0 auto; }
+        .form-header { text-align: center; margin-bottom: 48px; }
+        .form-header h2 { font-size: 36px; font-weight: 700; margin-bottom: 16px; }
+        .form-header p { font-size: 20px; opacity: 0.9; }
+        .registration-form { background: white; border-radius: 24px; padding: 48px; color: #333; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .form-group { margin-bottom: 24px; }
+        .form-group label { display: block; font-weight: 600; color: #374151; margin-bottom: 8px; font-size: 14px; }
+        .form-control { width: 100%; padding: 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; transition: all 0.3s ease; }
+        .form-control:focus { outline: none; border-color: #8b5cf6; box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1); }
+        .form-control.error { border-color: #ef4444; background: #fef2f2; }
+        .form-control.success { border-color: #10b981; background: #f0fdf4; }
+        .checkbox-group { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 32px; }
+        .checkbox-group input[type="checkbox"] { margin-top: 4px; width: 20px; height: 20px; }
+        .checkbox-group label { font-size: 14px; color: #6b7280; margin-bottom: 0; }
+        .checkbox-group a { color: #8b5cf6; text-decoration: none; }
+        .checkbox-group a:hover { text-decoration: underline; }
+        .submit-btn { width: 100%; background: #2E14ED; color: white; padding: 16px; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .submit-btn:hover { background: #1d4ed8; }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal.show { display: flex; }
+        .modal-content { background: white; border-radius: 24px; padding: 32px; max-width: 400px; width: 100%; text-align: center; transform: scale(0.95); transition: transform 0.3s ease; }
+        .modal.show .modal-content { transform: scale(1); }
+        .modal-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
+        .modal-icon svg { width: 40px; height: 40px; color: white; }
+        .modal h3 { font-size: 24px; font-weight: 700; color: #1f2937; margin-bottom: 16px; }
+        .modal p { color: #6b7280; margin-bottom: 32px; line-height: 1.6; }
+        .modal-btn { background: #2563eb; color: white; padding: 12px 32px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.3s ease; }
+        .modal-btn:hover { background: #1d4ed8; }
+        .footer { background: #111827; color: white; padding: 48px 0; text-align: center; }
+        .footer h3 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+        .footer p { color: #9ca3af; max-width: 600px; margin: 0 auto 32px; }
+        .footer-divider { border-top: 1px solid #374151; padding-top: 32px; }
+        .footer-contact { color: #9ca3af; font-size: 14px; }
+        .footer-contact a { color: #60a5fa; text-decoration: none; }
+        .footer-contact a:hover { text-decoration: underline; }
+        @media (max-width: 768px) {
+            .hero-grid, .course-grid { grid-template-columns: 1fr; gap: 32px; }
+            .hero-text h1 { font-size: 36px; }
+            .nav-links { display: none; }
+            .form-row { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; }
+            .course-content, .registration-form { padding: 32px 24px; }
+            .container { padding: 0 16px; }
+        }
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 28px; }
+            .section-header h2, .form-header h2 { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="container">
+                <nav class="nav">
+                    <div class="logo">IA Pedagogia</div>
+                    <ul class="nav-links">
+                        <li><a href="#curso">Sobre o Curso</a></li>
+                        <li><a href="#inscricao">Inscrição</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+                <div class="hero-grid">
+                    <div class="hero-text">
+                        <div class="hero-badge">Capacitação Profissional 2024</div>
+                        <h1>Inteligência Artificial na <span class="highlight">Pedagogia</span></h1>
+                        <p class="hero-description">Capacite-se no uso profissional de ferramentas de IA para transformar sua prática educacional. Curso de 8 semanas com acompanhamento especializado.</p>
+                        <div class="hero-buttons">
+                            <a href="#inscricao" class="btn btn-primary">Inscrever-se</a>
+                            <a href="../index.html" class="btn btn-secondary">Voltar ao Início</a>
+                        </div>
+                    </div>
+                    <div class="hero-highlights">
+                        <h3>Destaques do Curso</h3>
+                        <div class="highlight-item"><div class="highlight-dot"></div><span>Aplicação prática em sala de aula</span></div>
+                        <div class="highlight-item"><div class="highlight-dot"></div><span>Ferramentas atuais do mercado</span></div>
+                        <div class="highlight-item"><div class="highlight-dot"></div><span>Certificação reconhecida</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Lógica JS da página...
+    </script>
+</body>
+</html>

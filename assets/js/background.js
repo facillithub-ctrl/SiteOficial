@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "events": {
               "onhover": {
                 "enable": true,
-                "mode": "repulse" // <- EFEITO DE INTERAÇÃO COM O MOUSE ESTÁ AQUI
+                "mode": "repulse"
               },
               "onclick": {
                 "enable": true,
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             "modes": {
               "repulse": {
-                "distance": 100, // Distância que as partículas se afastam do mouse
+                "distance": 100,
                 "duration": 0.4
               },
               "push": {

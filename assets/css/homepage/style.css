@@ -1,3 +1,4 @@
+/* Conteúdo original de style.css, com caminhos corrigidos se necessário */
 /* --- Variáveis e Reset --- */
 :root {
     --royal-blue: #2E14ED;
@@ -190,57 +191,28 @@ main#fullpage-container { height: auto; width: 100%; }
     .menu-container { display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); padding: 0; border-bottom: 1px solid var(--header-border); }
     .menu-container.active { display: block; max-height: calc(100vh - 60px); overflow-y: auto; }
     
-    /* ADIÇÃO: Efeito de transparência no menu mobile quando sobre a seção Hero */
-
-
-.site-header:not(.scrolled) .menu-container.active .menu ul li a {
-    color: var(--dark-text) !important; /* Texto escuro para contraste */
-}
-
-/* HOTFIX — manter menu mobile legível sobre o hero */
-@media (max-width: 1200px) {
-  .site-header:not(.scrolled) .menu-container.active {
-    background-color: #fff;   /* fundo sólido */
-    backdrop-filter: none;
-  }
-  .site-header:not(.scrolled) .menu-container.active .menu ul li a {
-    color: var(--dark-text) !important; /* texto escuro */
-  }
-}
-
+    @media (max-width: 1200px) {
+      .site-header:not(.scrolled) .menu-container.active {
+        background-color: #fff;
+        backdrop-filter: none;
+      }
+      .site-header:not(.scrolled) .menu-container.active .menu ul li a,
+      .site-header.scrolled .menu-container.active .menu ul li a {
+        color: var(--dark-text) !important;
+      }
+    }
     
     .menu ul { flex-direction: column; align-items: stretch; gap: 0; }
-    
-    /* CORREÇÃO FINAL DE CENTRALIZAÇÃO */
-    .menu ul li { 
-        width: 100%;
-        text-align: center; /* Garante que o texto dentro do 'a' possa ser centralizado */
-    }
-    .menu ul li a { 
-        padding: 15px 45px 15px 20px; 
-        color: var(--dark-text) !important; 
-        border-bottom: 1px solid rgba(224, 224, 224, 0.5); 
-        position: relative; 
-        display: block; /* Garante que o 'text-align' do pai funcione */
-    }
-    /* O estilo de cor do texto precisa ser sobrescrito quando o menu está transparente */
-    .site-header:not(.scrolled) .menu-container.active .menu ul li a {
-        color: var(--white) !important;
-    }
-
-    .menu ul li a i.fa-chevron-down { 
-        position: absolute; 
-        right: 20px; 
-        top: 50%; 
-        transform: translateY(-50%); 
-    }
+    .menu ul li { width: 100%; text-align: center; }
+    .menu ul li a { padding: 15px 45px 15px 20px; border-bottom: 1px solid rgba(224, 224, 224, 0.5); position: relative; display: block; }
+    .menu ul li a i.fa-chevron-down { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
     .has-megadropdown.active > a i.fa-chevron-down { transform: translateY(-50%) rotate(180deg); }
     .hamburger { display: block; }
     .has-megadropdown .mega-dropdown {
         position: static; opacity: 1; visibility: visible; box-shadow: none; transform: none;
         padding: 0; margin-top: 0; max-height: 0;
         overflow: hidden; transition: max-height 0.5s ease-out, padding 0.5s ease-out;
-        min-width: unset !important; width: 100%; background-color: rgba(0,0,0,0.1); /* Fundo sutil para o submenu */
+        min-width: unset !important; width: 100%; background-color: rgba(0,0,0,0.1);
         border-radius: 0; border-bottom: 1px solid rgba(224, 224, 224, 0.5);
     }
     .has-megadropdown.active .mega-dropdown {
@@ -253,12 +225,7 @@ main#fullpage-container { height: auto; width: 100%; }
     .dropdown-column { margin-bottom: 10px; }
     .dropdown-column h5 { display: none; }
     .dropdown-column ul { gap: 0; }
-    .dropdown-column ul li a { 
-        padding: 12px 20px 12px 40px; 
-        border-bottom: none; 
-        background-color: transparent; 
-        text-align: left; 
-    }
+    .dropdown-column ul li a { padding: 12px 20px 12px 40px; border-bottom: none; background-color: transparent; text-align: left; }
     .dropdown-column ul li a:hover { background-color: rgba(255,255,255,0.1); }
     .dropdown-column ul li a strong { font-size: 14px; }
     .dropdown-column ul li a span { font-size: 12px; }
@@ -275,41 +242,17 @@ main#fullpage-container { height: auto; width: 100%; }
     .section-title { font-size: 36px; }
     .section { padding: 100px 15px; }
     .audience-layout, .features-grid-new, .modules-grid-container { grid-template-columns: 1fr; }
-    
-    /* CORREÇÃO: Alinhamento do título da seção de depoimentos */
-    #testimonials .section-title {
-        text-align: center;
-    }
-
+    #testimonials .section-title { text-align: center; }
     .footer-content h2 { font-size: 38px; }
     .footer-grid { grid-template-columns: 1fr; }
     .footer-column { text-align: center; }
 }
 
 @media (max-width: 576px) {
-    .header-right .btn-link { 
-        display: none; 
-    }
-
-    .header-right .btn-primary { 
-        padding: 8px 12px; 
-        font-size: 14px; 
-    }
-
-    .section-title { 
-        font-size: 32px; 
-    }
-
-    .testimonial-card { 
-        width: calc(100vw - 40px); 
-    }
-
-    .footer-bottom { 
-        flex-direction: column; 
-        gap: 20px; 
-    }
-
-    .footer-content h2 { 
-        font-size: 36px; 
-    }
+    .header-right .btn-link { display: none; }
+    .header-right .btn-primary { padding: 8px 12px; font-size: 14px; }
+    .section-title { font-size: 32px; }
+    .testimonial-card { width: calc(100vw - 40px); }
+    .footer-bottom { flex-direction: column; gap: 20px; }
+    .footer-content h2 { font-size: 36px; }
 }

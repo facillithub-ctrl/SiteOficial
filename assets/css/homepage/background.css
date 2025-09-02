@@ -37,7 +37,7 @@ body {
     z-index: 1; 
 }
 
-/* ---- NOVO BOTÃO DE VOLTAR ---- */
+/* ---- BOTÃO DE VOLTAR ---- */
 .back-to-home {
     position: fixed;
     top: 25px;

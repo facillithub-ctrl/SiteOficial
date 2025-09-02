@@ -8,9 +8,6 @@
     --light-text: #6c757d;
     --white: #ffffff;
     --border-color: rgba(255, 255, 255, 0.5);
-    /* Estas variáveis não são mais necessárias para o fundo principal, mas podem ser usadas em outros lugares */
-    --background-start: #e0c3fc;
-    --background-end: #8ec5fc;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -83,7 +80,7 @@
 }
 
 /* ---- 4. ANIMAÇÕES E ALTURA DINÂMICA ---- */
-#facilit-hub-form {
+#facilit-hub-form, #facilit-hub-login-form {
     position: relative;
     transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -101,10 +98,10 @@
 }
 
 /* ---- 5. ESTILOS DE TEXTO, BOTÕES E NAVEGAÇÃO ---- */
-.step-title { font-size: 24px; font-weight: 700; margin-bottom: 30px; line-height: 1.4; text-align: center; }
-.step-subtitle { font-size: 16px; color: var(--light-text); margin-bottom: 20px; text-align: center; }
+.step-title { font-size: 24px; font-weight: 700; margin-bottom: 10px; line-height: 1.4; text-align: center; }
+.step-subtitle { font-size: 16px; color: var(--light-text); margin-bottom: 30px; text-align: center; }
 
-.options-group, .options-group-vertical { display: flex; gap: 15px; justify-content: center; }
+.options-group, .options-group-vertical { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
 .options-group-vertical { flex-direction: column; }
 .btn {
     padding: 14px 28px; border-radius: 12px; font-size: 16px; font-weight: 500;
@@ -154,12 +151,7 @@
 }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-.floating-label-group input::-webkit-calendar-picker-indicator {
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%236c757d" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>') no-repeat;
-    cursor: pointer; opacity: 0.7; transition: opacity 0.2s;
-}
-
-.custom-checkbox { display: flex; align-items: center; gap: 10px; margin-top: 20px; justify-content: center; }
+.custom-checkbox { display: flex; align-items: center; gap: 10px; margin-top: 20px; }
 .custom-checkbox input[type="checkbox"] { display: none; }
 .custom-checkbox label { cursor: pointer; position: relative; padding-left: 30px; font-size: 14px; user-select: none; }
 .custom-checkbox label::before {
@@ -188,30 +180,36 @@
     background-color: rgba(255, 255, 255, 0.5); font-size: 16px; font-family: 'Inter', sans-serif;
     outline: none; transition: all 0.3s ease; cursor: pointer; color: var(--dark-text);
 }
+.avatar-options { display: flex; gap: 15px; margin-top: 15px; justify-content: center; }
+.avatar-choice { background: none; border: 1px solid var(--light-text); color: var(--dark-text); padding: 10px 15px; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, color 0.3s; }
+.avatar-choice:hover { background-color: rgba(46, 20, 237, 0.1); border-color: var(--royal-blue); color: var(--royal-blue); }
 
-.avatar-options {
+
+/* ---- ESTILOS ESPECÍFICOS PARA LOGIN ---- */
+.login-options {
     display: flex;
-    gap: 15px;
-    margin-top: 15px;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
 }
-
-.avatar-choice {
-    background: none;
-    border: 1px solid var(--light-text);
-    color: var(--dark-text);
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.avatar-choice:hover {
-    background-color: rgba(46, 20, 237, 0.1);
-    border-color: var(--royal-blue);
+.forgot-password-link {
+    font-size: 14px;
     color: var(--royal-blue);
+    text-decoration: none;
+}
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--light-text);
+}
+.register-link a {
+    color: var(--royal-blue);
+    font-weight: 500;
+    text-decoration: none;
 }
 
+/* ---- RESPONSIVIDADE ---- */
 @media (max-width: 768px) {
     .cadastro-container {
         flex-direction: column;
@@ -219,7 +217,7 @@
         margin-bottom: 20px;
     }
     .mascote-container {
-        display: none; /* Esconde a imagem em telas muito pequenas para focar no formulário */
+        display: none;
     }
     .form-lado-a-lado {
         padding: 20px;
