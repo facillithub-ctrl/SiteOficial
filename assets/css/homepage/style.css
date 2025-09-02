@@ -262,12 +262,13 @@ main#fullpage-container { height: auto; width: 100%; }
     }
 
     /* Dropdown (Submenu) no Estilo Acordeão */
-    .has-megadropdown .mega-dropdown {
+   .has-megadropdown .mega-dropdown {
         position: static;
         opacity: 1;
         visibility: visible;
         box-shadow: none;
         transform: none;
+        left: unset;
         width: 100%;
         background-color: var(--background-light);
         border-radius: 0;
