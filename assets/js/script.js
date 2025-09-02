@@ -8,17 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Seleciona todos os itens que possuem dropdown
         const dropdownItems = document.querySelectorAll('.has-megadropdown');
         
-        // Adiciona os botões de Acessar/Criar Conta no rodapé do menu
-        if (menuContainer) {
-            const footerHTML = `
-                <div class="mobile-menu-footer">
-                    <a href="pages/homepage/login.html" class="btn btn-link">Acessar</a>
-                    <a href="pages/homepage/register.html" class="btn btn-primary">Criar conta</a>
-                </div>`;
-            // Adiciona o footer dentro do .menu-container para fixá-lo no fundo
-            menuContainer.insertAdjacentHTML('beforeend', footerHTML);
-        }
-
         dropdownItems.forEach(item => {
             const link = item.querySelector('a');
             const dropdown = item.querySelector('.mega-dropdown');

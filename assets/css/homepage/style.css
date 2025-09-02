@@ -185,10 +185,10 @@ main#fullpage-container { height: auto; width: 100%; }
 .social-icons a { color: #ccc; margin-left: 15px; font-size: 20px; }
 
 /* ==========================================================================
-   INÍCIO - NOVA ABORDAGEM RESPONSIVA (MENU OVERLAY)
+   INÍCIO - ESTILOS DO MENU MOBILE (ESTILO SLACK)
    ========================================================================== */
+
 @media (max-width: 1200px) {
-    /* --- Header Básico no Mobile --- */
     .site-header {
         width: 100%;
         top: 0;
@@ -198,175 +198,138 @@ main#fullpage-container { height: auto; width: 100%; }
         padding: 10px 20px;
     }
     .hamburger { display: block; }
-    .header-right { display: none; } /* Esconde os botões originais no header */
+    .header-right { display: none; } /* Esconde os botões no desktop */
+    .menu-container .menu { display: none; } /* Esconde o menu de navegação original */
 
-    /* --- Container do Menu (Tela Cheia) --- */
-    .menu-container {
+    /* Container do Menu (Overlay) */
+    .mobile-menu-overlay {
         position: fixed;
         top: 0;
-        left: 100%; /* Começa fora da tela */
+        left: 0;
         width: 100%;
         height: 100%;
         background-color: var(--white);
-        z-index: 1100; /* Acima do hamburger */
-        opacity: 0;
-        visibility: hidden;
-        transition: left 0.4s ease, opacity 0.4s ease, visibility 0.4s ease;
-        overflow-x: hidden; /* Previne scroll horizontal durante a transição */
+        z-index: 1100;
+        transform: translateX(100%);
+        transition: transform 0.4s ease;
         display: flex;
         flex-direction: column;
     }
-    .menu-container.active {
-        left: 0;
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* --- Wrapper para os Painéis Deslizantes --- */
-    .menu {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        flex-grow: 1;
-    }
-
-    /* --- Painel Principal (Nível 1) --- */
-    .menu > ul {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-        width: 100%;
-        height: 100%;
-        padding: 80px 0 120px; /* Espaço para header e botões de rodapé */
-        overflow-y: auto;
-        list-style: none;
-        position: absolute;
-        top: 0;
-        left: 0;
+    .mobile-menu-overlay.active {
         transform: translateX(0);
-        transition: transform 0.4s ease;
     }
 
-    .menu-container.submenu-is-open > .menu > ul {
-        transform: translateX(-100%); /* Desliza painel principal para a esquerda */
-    }
-
-    /* Itens do menu principal */
-    .menu ul li {
-        width: 100%;
-    }
-    .menu ul li a {
+    /* Cabeçalho do Menu Mobile */
+    .mobile-menu-header {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        padding: 18px 25px;
-        color: var(--dark-text) !important;
-        font-size: 1.2rem;
-        font-weight: 500;
-        border-bottom: 1px solid var(--header-border);
-    }
-    .menu ul li a .fa-chevron-down {
-        transform: rotate(-90deg); /* Aponta para a direita */
-    }
-
-    /* --- Sub-Painel (Nível 2) --- */
-    .has-megadropdown .mega-dropdown {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 1;
-        visibility: visible;
-        background-color: var(--white);
-        box-shadow: none;
-        transform: translateX(100%); /* Começa à direita, fora da tela */
-        transition: transform 0.4s ease;
-        padding: 0;
-        margin: 0;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-    }
-    .has-megadropdown.is-open .mega-dropdown {
-        transform: translateX(0); /* Traz o sub-painel para a visão */
-    }
-
-    /* Header do sub-painel */
-    .mobile-submenu-header {
-        display: flex;
         align-items: center;
         padding: 15px 20px;
         border-bottom: 1px solid var(--header-border);
         flex-shrink: 0;
     }
-    .mobile-menu-back {
+    .mobile-menu-header .logo img {
+        height: 30px;
+        filter: none; /* Garante que o logo não fique branco */
+    }
+    .mobile-menu-close {
         background: none;
         border: none;
-        font-size: 1rem;
-        font-weight: 500;
-        color: var(--dark-text);
+        font-size: 28px;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        color: var(--dark-text);
     }
-    .mobile-menu-back i { color: var(--royal-blue); }
+    
+    /* Corpo do Menu com scroll */
+    .mobile-menu-body {
+        padding: 20px 0;
+        overflow-y: auto;
+        flex-grow: 1;
+    }
 
-    /* Conteúdo do sub-painel */
-    .mega-dropdown .dropdown-grid {
+    .mobile-menu-body ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .mobile-menu-body ul li a {
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+        color: var(--dark-text) !important;
+        font-size: 1.1rem;
+        font-weight: 500;
+        text-decoration: none;
+        border-bottom: 1px solid var(--header-border);
+    }
+    
+    /* Estilo do Acordeão */
+    .has-megadropdown > a i.fa-chevron-down {
+        transition: transform 0.3s ease;
+    }
+    .has-megadropdown.active > a i.fa-chevron-down {
+        transform: rotate(180deg);
+        color: var(--royal-blue);
+    }
+    .has-megadropdown .mega-dropdown {
+        position: static;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        background-color: var(--background-light);
+        padding: 10px 0;
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    }
+    .has-megadropdown.active .mega-dropdown {
+        max-height: 1000px; /* Um valor alto para permitir a expansão */
+    }
+    .mega-dropdown .dropdown-grid {
+        display: block;
         min-width: unset;
         width: 100%;
-        padding: 20px 0;
     }
-    .dropdown-column { padding: 0 25px; }
+    .dropdown-column { padding: 0 10px; }
     .dropdown-column h5 {
-        font-size: 1rem;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        margin-bottom: 10px;
-        padding-top: 15px;
+        display: none; /* Esconde os títulos das colunas no mobile */
     }
-    .dropdown-column h5 i { display: none; }
-    .dropdown-column ul {
-        flex-direction: column;
-        gap: 0;
-    }
+    .dropdown-column ul { gap: 0; }
     .dropdown-column ul li a {
-        padding: 12px 0;
+        padding: 12px 40px;
+        font-size: 0.95rem;
         border-bottom: none;
-        font-size: 1rem;
     }
-     .dropdown-column ul li a:hover { background: none; }
-    .dropdown-column ul li a strong { font-size: 1rem; }
-    .dropdown-column ul li a span { font-size: 0.85rem; }
+     .dropdown-column ul li a:hover {
+        background-color: rgba(0,0,0,0.05);
+    }
 
-    /* --- Rodapé com botões de Acesso/Cadastro --- */
+    /* Rodapé com Botões */
     .mobile-menu-footer {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
         padding: 20px 25px;
-        background-color: var(--white);
         border-top: 1px solid var(--header-border);
         display: flex;
         gap: 15px;
+        flex-shrink: 0;
     }
     .mobile-menu-footer .btn {
         flex: 1;
+        text-align: center;
         padding: 12px;
         font-size: 1rem;
     }
     .mobile-menu-footer .btn-link {
+        background-color: var(--white);
         border: 1px solid var(--header-border);
         color: var(--dark-text);
     }
-     .mobile-menu-footer .btn-primary {
+    .mobile-menu-footer .btn-primary {
         background-color: var(--royal-blue);
         color: var(--white);
+        border: 1px solid var(--royal-blue);
     }
 }
 
