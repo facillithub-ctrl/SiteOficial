@@ -203,16 +203,20 @@ main#fullpage-container { height: auto; width: 100%; }
     .menu ul li { width: 100%; }
     
     .menu ul li a {
-        padding: 15px 20px; /* Padding simétrico */
+        padding: 15px 20px;
         border-bottom: 1px solid rgba(224, 224, 224, 0.5);
         position: relative;
         display: block;
-        text-align: center; /* <<< AJUSTE DE CENTRALIZAÇÃO */
+        text-align: center;
     }
 
     .menu ul li a i.fa-chevron-down { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
     .has-megadropdown.active > a i.fa-chevron-down { transform: translateY(-50%) rotate(180deg); }
     .hamburger { display: block; }
+
+    /* ==========================================================================
+       INÍCIO - Bloco de Código Corrigido para o Menu Mobile
+       ========================================================================== */
 
     .has-megadropdown .mega-dropdown {
         position: static;
@@ -246,6 +250,7 @@ main#fullpage-container { height: auto; width: 100%; }
     }
 
     .dropdown-column {
+        width: 100%;
         margin-bottom: 0;
     }
 
@@ -258,13 +263,11 @@ main#fullpage-container { height: auto; width: 100%; }
     }
 
     .dropdown-column ul li a {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* <<< AJUSTE DE CENTRALIZAÇÃO */
-        padding: 12px 20px; /* Padding simétrico */
+        display: block; /* MUDANÇA: Simplificado para 'block' */
+        padding: 12px 20px;
+        text-align: center; /* MUDANÇA: A única regra de centralização necessária */
         border-bottom: none;
         background-color: transparent;
-        text-align: center; /* <<< AJUSTE DE CENTRALIZAÇÃO */
     }
 
     .dropdown-column ul li a:hover {
@@ -272,6 +275,7 @@ main#fullpage-container { height: auto; width: 100%; }
     }
 
     .dropdown-column ul li a strong {
+        display: block; /* MUDANÇA: Garante que o strong se comporte como bloco */
         font-size: 14px;
         font-weight: 500; 
         color: var(--dark-text);
@@ -279,10 +283,15 @@ main#fullpage-container { height: auto; width: 100%; }
     }
 
     .dropdown-column ul li a span {
+        display: block; /* MUDANÇA: Garante que o span se comporte como bloco */
         font-size: 13px;
         font-weight: 400;
         color: var(--text-muted);
     }
+
+    /* ==========================================================================
+       FIM - Bloco de Código Corrigido
+       ========================================================================== */
 }
 
 @media (max-width: 992px) {
