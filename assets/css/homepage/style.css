@@ -187,137 +187,186 @@ main#fullpage-container { height: auto; width: 100%; }
 /* ==========================================================================
    INÍCIO - NOVA ABORDAGEM RESPONSIVA (MENU OVERLAY)
    ========================================================================== */
-
 @media (max-width: 1200px) {
-    /* Header no Mobile */
-    .site-header { width: 100%; top: 0; left: 0; transform: none; border-radius: 0; padding: 10px 20px; }
+    /* --- Header Básico no Mobile --- */
+    .site-header {
+        width: 100%;
+        top: 0;
+        left: 0;
+        transform: none;
+        border-radius: 0;
+        padding: 10px 20px;
+    }
     .hamburger { display: block; }
-    .header-right { display: none; }
+    .header-right { display: none; } /* Esconde os botões originais no header */
 
-    /* O Container do Menu Overlay (ecrã inteiro) */
+    /* --- Container do Menu (Tela Cheia) --- */
     .menu-container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding-top: 80px;
-        
         position: fixed;
         top: 0;
-        left: 100%;
+        left: 100%; /* Começa fora da tela */
         width: 100%;
-        height: 100vh;
-        
+        height: 100%;
         background-color: var(--white);
-        
+        z-index: 1100; /* Acima do hamburger */
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.4s ease, left 0.4s ease, visibility 0.4s ease;
-        overflow-y: auto;
+        transition: left 0.4s ease, opacity 0.4s ease, visibility 0.4s ease;
+        overflow-x: hidden; /* Previne scroll horizontal durante a transição */
+        display: flex;
+        flex-direction: column;
     }
     .menu-container.active {
         left: 0;
         opacity: 1;
         visibility: visible;
     }
-    
-    /* Lista de Itens do Menu */
-    .menu ul {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        gap: 0;
+
+    /* --- Wrapper para os Painéis Deslizantes --- */
+    .menu {
+        position: relative;
         width: 100%;
-        padding: 0;
+        height: 100%;
+        flex-grow: 1;
     }
 
-    /* Cada Item Principal do Menu */
+    /* --- Painel Principal (Nível 1) --- */
+    .menu > ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        width: 100%;
+        height: 100%;
+        padding: 80px 0 120px; /* Espaço para header e botões de rodapé */
+        overflow-y: auto;
+        list-style: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(0);
+        transition: transform 0.4s ease;
+    }
+
+    .menu-container.submenu-is-open > .menu > ul {
+        transform: translateX(-100%); /* Desliza painel principal para a esquerda */
+    }
+
+    /* Itens do menu principal */
     .menu ul li {
         width: 100%;
-        max-width: none;
-        text-align: left;
     }
     .menu ul li a {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 15px 25px;
+        padding: 18px 25px;
         color: var(--dark-text) !important;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         font-weight: 500;
         border-bottom: 1px solid var(--header-border);
     }
-    .menu ul li:last-child > a {
-        border-bottom: none;
+    .menu ul li a .fa-chevron-down {
+        transform: rotate(-90deg); /* Aponta para a direita */
     }
 
-    /* Seta (Chevron) */
-    .menu ul li a i.fa-chevron-down {
-        font-size: 0.9rem;
-        transition: transform 0.3s ease;
-    }
-    .has-megadropdown.active > a i.fa-chevron-down {
-        transform: rotate(180deg);
-        color: var(--royal-blue);
-    }
-
-    /* Dropdown (Submenu) no Estilo Acordeão */
-   .has-megadropdown .mega-dropdown {
-        position: static;
+    /* --- Sub-Painel (Nível 2) --- */
+    .has-megadropdown .mega-dropdown {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         opacity: 1;
         visibility: visible;
+        background-color: var(--white);
         box-shadow: none;
-        transform: none;
-        left: unset;
-        width: 100%;
-        background-color: var(--background-light);
-        border-radius: 0;
+        transform: translateX(100%); /* Começa à direita, fora da tela */
+        transition: transform 0.4s ease;
         padding: 0;
         margin: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .has-megadropdown.is-open .mega-dropdown {
+        transform: translateX(0); /* Traz o sub-painel para a visão */
     }
 
-    .has-megadropdown.active .mega-dropdown {
-        max-height: 1000px;
-        padding: 10px 0;
+    /* Header do sub-painel */
+    .mobile-submenu-header {
+        display: flex;
+        align-items: center;
+        padding: 15px 20px;
+        border-bottom: 1px solid var(--header-border);
+        flex-shrink: 0;
     }
-    
-    /* ***** A CORREÇÃO CRUCIAL ESTÁ AQUI ***** */
-    .mega-dropdown .dropdown-grid {
-        display: block;
-        min-width: unset; /* ESTA É A LINHA QUE RESOLVE O PROBLEMA */
-        width: 100%;
-    }
-    
-    .dropdown-column h5 { display: none; }
-    .dropdown-column ul { gap: 0; }
-
-    /* Links do Submenu */
-    .dropdown-column ul li a {
-        text-align: left;
-        padding: 12px 40px;
-        font-size: 0.95rem;
-        font-weight: 400;
-        border-bottom: none;
-    }
-    .dropdown-column ul li a:hover {
-        background-color: rgba(0,0,0,0.05);
-    }
-    .dropdown-column ul li a strong,
-    .dropdown-column ul li a span {
-        text-align: left;
-        display: block;
-    }
-    .dropdown-column ul li a strong {
-        font-size: 0.95rem;
+    .mobile-menu-back {
+        background: none;
+        border: none;
+        font-size: 1rem;
         font-weight: 500;
+        color: var(--dark-text);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
-    .dropdown-column ul li a span {
-        font-size: 0.75rem;
+    .mobile-menu-back i { color: var(--royal-blue); }
+
+    /* Conteúdo do sub-painel */
+    .mega-dropdown .dropdown-grid {
+        display: flex;
+        flex-direction: column;
+        min-width: unset;
+        width: 100%;
+        padding: 20px 0;
+    }
+    .dropdown-column { padding: 0 25px; }
+    .dropdown-column h5 {
+        font-size: 1rem;
         color: var(--text-muted);
-        margin-top: 2px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        padding-top: 15px;
+    }
+    .dropdown-column h5 i { display: none; }
+    .dropdown-column ul {
+        flex-direction: column;
+        gap: 0;
+    }
+    .dropdown-column ul li a {
+        padding: 12px 0;
+        border-bottom: none;
+        font-size: 1rem;
+    }
+     .dropdown-column ul li a:hover { background: none; }
+    .dropdown-column ul li a strong { font-size: 1rem; }
+    .dropdown-column ul li a span { font-size: 0.85rem; }
+
+    /* --- Rodapé com botões de Acesso/Cadastro --- */
+    .mobile-menu-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 25px;
+        background-color: var(--white);
+        border-top: 1px solid var(--header-border);
+        display: flex;
+        gap: 15px;
+    }
+    .mobile-menu-footer .btn {
+        flex: 1;
+        padding: 12px;
+        font-size: 1rem;
+    }
+    .mobile-menu-footer .btn-link {
+        border: 1px solid var(--header-border);
+        color: var(--dark-text);
+    }
+     .mobile-menu-footer .btn-primary {
+        background-color: var(--royal-blue);
+        color: var(--white);
     }
 }
 

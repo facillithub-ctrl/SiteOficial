@@ -1,45 +1,77 @@
 document.addEventListener('DOMContentLoaded', function () {
-
     const header = document.querySelector('.site-header');
     const hamburger = document.querySelector('.hamburger');
     const menuContainer = document.querySelector('.menu-container');
 
-    // --- 1. LÓGICA DO MENU HAMBURGER E DROPDOWNS ---
-    
-    hamburger.addEventListener('click', function() {
-        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-        hamburger.setAttribute('aria-expanded', !isExpanded);
-        menuContainer.classList.toggle('active');
-
-        // Trava e destrava o scroll da página principal
-        document.body.classList.toggle('noscroll');
-
-        // Fecha submenus ao fechar o menu principal
-        if (!menuContainer.classList.contains('active')) {
-            document.querySelectorAll('.has-megadropdown.active').forEach(item => {
-                item.classList.remove('active');
-            });
+    // --- 1. LÓGICA DO NOVO MENU MOBILE (PAINÉIS DESLIZANTES) ---
+    function setupMobileMenu() {
+        // Seleciona todos os itens que possuem dropdown
+        const dropdownItems = document.querySelectorAll('.has-megadropdown');
+        
+        // Adiciona os botões de Acessar/Criar Conta no rodapé do menu
+        if (menuContainer) {
+            const footerHTML = `
+                <div class="mobile-menu-footer">
+                    <a href="pages/homepage/login.html" class="btn btn-link">Acessar</a>
+                    <a href="pages/homepage/register.html" class="btn btn-primary">Criar conta</a>
+                </div>`;
+            // Adiciona o footer dentro do .menu-container para fixá-lo no fundo
+            menuContainer.insertAdjacentHTML('beforeend', footerHTML);
         }
-    });
 
-    // Lógica para o acordeão no mobile
-    const dropdownToggles = document.querySelectorAll('.has-megadropdown > a');
-    dropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', (e) => {
-            if (window.innerWidth <= 1200) {
-                e.preventDefault(); 
-                const parentLi = toggle.parentElement;
-                
-                // Fecha outros acordeões abertos
-                document.querySelectorAll('.has-megadropdown').forEach(otherLi => {
-                    if (otherLi !== parentLi) {
-                        otherLi.classList.remove('active');
+        dropdownItems.forEach(item => {
+            const link = item.querySelector('a');
+            const dropdown = item.querySelector('.mega-dropdown');
+
+            if (link && dropdown) {
+                // Adiciona o botão "Voltar" dentro de cada submenu
+                const backButtonHTML = `
+                    <div class="mobile-submenu-header">
+                        <button class="mobile-menu-back">
+                            <i class="fas fa-chevron-left"></i> Voltar
+                        </button>
+                    </div>`;
+                dropdown.insertAdjacentHTML('afterbegin', backButtonHTML);
+
+                // Adiciona evento para abrir o submenu
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 1200) {
+                        e.preventDefault();
+                        menuContainer.classList.add('submenu-is-open');
+                        item.classList.add('is-open');
                     }
                 });
-                parentLi.classList.toggle('active');
+
+                // Adiciona evento para o botão "Voltar"
+                const backButton = dropdown.querySelector('.mobile-menu-back');
+                backButton.addEventListener('click', () => {
+                    if (window.innerWidth <= 1200) {
+                        menuContainer.classList.remove('submenu-is-open');
+                        item.classList.remove('is-open');
+                    }
+                });
             }
         });
-    });
+
+        // Lógica do Hamburger
+        hamburger.addEventListener('click', function() {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            menuContainer.classList.toggle('active');
+            document.body.classList.toggle('noscroll');
+
+            // Fecha submenus abertos ao fechar o menu principal
+            if (!menuContainer.classList.contains('active')) {
+                menuContainer.classList.remove('submenu-is-open');
+                document.querySelectorAll('.has-megadropdown.is-open').forEach(openItem => {
+                    openItem.classList.remove('is-open');
+                });
+            }
+        });
+    }
+
+    // Inicializa a lógica do menu mobile
+    setupMobileMenu();
 
     // --- 2. HEADER DINÂMICO (MUDA DE COR AO ROLAR) ---
     function handleHeaderScroll() {
@@ -103,5 +135,4 @@ document.addEventListener('DOMContentLoaded', function () {
             "particles": { "number": { "value": 110, "density": { "enable": true, "value_area": 900 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", }, "opacity": { "value": 0.5, "random": false, }, "size": { "value": 3, "random": true, }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "repulse": { "distance": 90, "duration": 0.4 }, "push": { "particles_nb": 4 } } }, "retina_detect": true
         });
     }
-
 });
