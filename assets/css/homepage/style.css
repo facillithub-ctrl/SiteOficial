@@ -254,4 +254,19 @@ main#fullpage-container { height: auto; width: 100%; }
     .testimonial-card { width: calc(100vw - 40px); }
     .footer-bottom { flex-direction: column; gap: 20px; }
     .footer-content h2 { font-size: 36px; }
+    /* ==========================================================================
+   CORREÇÃO PARA DROPDOWNS COM MÚLTIPLAS COLUNAS NO MOBILE
+   ========================================================================== */
+.mega-dropdown .dropdown-grid.three-columns,
+.mega-dropdown .dropdown-grid.four-columns {
+    /* Esta regra força os dropdowns a abandonarem o layout de grade
+       e empilhar suas seções (colunas) verticalmente. */
+    display: block;
+}
+
+.mega-dropdown .dropdown-grid .dropdown-column h5 {
+    /* Esta regra esconde os títulos das colunas (ex: "Estudo & Foco")
+       no mobile, limpando a aparência do menu. */
+    display: none;
+}
 }
