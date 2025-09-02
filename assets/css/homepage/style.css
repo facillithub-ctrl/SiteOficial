@@ -200,15 +200,19 @@ main#fullpage-container { height: auto; width: 100%; }
     }
     
     .menu ul { flex-direction: column; align-items: stretch; gap: 0; }
-    .menu ul li { width: 100%; text-align: center; }
-    .menu ul li a { padding: 15px 45px 15px 20px; border-bottom: 1px solid rgba(224, 224, 224, 0.5); position: relative; display: block; }
+    .menu ul li { width: 100%; }
+    
+    .menu ul li a {
+        padding: 15px 20px; /* Padding simétrico */
+        border-bottom: 1px solid rgba(224, 224, 224, 0.5);
+        position: relative;
+        display: block;
+        text-align: center; /* <<< AJUSTE DE CENTRALIZAÇÃO */
+    }
+
     .menu ul li a i.fa-chevron-down { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
     .has-megadropdown.active > a i.fa-chevron-down { transform: translateY(-50%) rotate(180deg); }
     .hamburger { display: block; }
-
-    /* ==========================================================================
-       INÍCIO - Bloco de Código Corrigido para o Menu Mobile
-       ========================================================================== */
 
     .has-megadropdown .mega-dropdown {
         position: static;
@@ -223,17 +227,16 @@ main#fullpage-container { height: auto; width: 100%; }
         transition: max-height 0.5s ease-out, padding 0.5s ease-out;
         min-width: unset !important;
         width: 100%;
-        background-color: #f0f2f5; /* Fundo mais sólido para o dropdown */
+        background-color: #f0f2f5; 
         border-radius: 0;
         border-bottom: 1px solid rgba(224, 224, 224, 0.5);
     }
 
     .has-megadropdown.active .mega-dropdown {
-        max-height: 1000px; /* Permite que o conteúdo apareça */
+        max-height: 1000px; 
         padding: 10px 0;
     }
 
-    /* Força os dropdowns a terem layout de bloco (vertical) */
     .mega-dropdown .dropdown-grid {
         display: block;
         min-width: unset;
@@ -243,10 +246,9 @@ main#fullpage-container { height: auto; width: 100%; }
     }
 
     .dropdown-column {
-        margin-bottom: 0; /* Remove margem entre as colunas empilhadas */
+        margin-bottom: 0;
     }
 
-    /* Esconde os títulos das colunas no mobile (Ex: "Estudo & Foco") */
     .dropdown-column h5 {
         display: none;
     }
@@ -255,38 +257,32 @@ main#fullpage-container { height: auto; width: 100%; }
         gap: 0;
     }
 
-    /* Estilo padronizado para CADA link do dropdown mobile */
     .dropdown-column ul li a {
         display: flex;
-        flex-direction: column; /* Empilha o título e a descrição */
-        padding: 12px 20px 12px 40px;
+        flex-direction: column;
+        align-items: center; /* <<< AJUSTE DE CENTRALIZAÇÃO */
+        padding: 12px 20px; /* Padding simétrico */
         border-bottom: none;
         background-color: transparent;
-        text-align: left;
+        text-align: center; /* <<< AJUSTE DE CENTRALIZAÇÃO */
     }
 
     .dropdown-column ul li a:hover {
-        background-color: rgba(0, 0, 0, 0.05); /* Efeito de hover mais sutil */
+        background-color: rgba(0, 0, 0, 0.05);
     }
 
-    /* Padroniza o tamanho e peso da fonte do TÍTULO do link */
     .dropdown-column ul li a strong {
         font-size: 14px;
-        font-weight: 500; /* Deixa a fonte um pouco menos pesada */
+        font-weight: 500; 
         color: var(--dark-text);
-        margin-bottom: 2px; /* Pequeno espaço entre título e descrição */
+        margin-bottom: 2px; 
     }
 
-    /* Padroniza o tamanho e cor da DESCRIÇÃO do link */
     .dropdown-column ul li a span {
         font-size: 13px;
         font-weight: 400;
         color: var(--text-muted);
     }
-
-    /* ==========================================================================
-       FIM - Bloco de Código Corrigido
-       ========================================================================== */
 }
 
 @media (max-width: 992px) {
